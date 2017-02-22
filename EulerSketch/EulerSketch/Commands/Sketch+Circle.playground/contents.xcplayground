@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='osx' display-mode='raw'>
+    <pages>
+        <page name='circle with fixed center'/>
+        <page name='circle with a draggable center'/>
+        <page name='circle through point'/>
+        <page name='circle through 3 points'/>
+        <page name='circle tangents'/>
+        <page name='circle radical axis'/>
+    </pages>
+</playground>

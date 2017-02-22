@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='macos'>
+    <pages>
+        <page name='butterfly'/>
+        <page name='Napoleon1'/>
+        <page name='BeyondNapoleon1'/>
+        <page name='BeyondNapoleon2'/>
+    </pages>
+</playground>

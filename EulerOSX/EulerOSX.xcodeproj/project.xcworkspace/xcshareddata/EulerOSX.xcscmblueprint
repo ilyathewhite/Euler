@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "99095F911BC0B3EA8C283EBF920BF40D43CC3F5F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "7FFF31B1C34EE2955BCFB13F4E47FFA3F1335910" : 0,
+    "99095F911BC0B3EA8C283EBF920BF40D43CC3F5F" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5D1F9B3E-EB0C-4CF7-895B-0E61A5CDF52A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "7FFF31B1C34EE2955BCFB13F4E47FFA3F1335910" : "HSFoundation\/",
+    "99095F911BC0B3EA8C283EBF920BF40D43CC3F5F" : "Euler\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "EulerOSX",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "EulerOSX\/EulerOSX.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ilyathewhite\/HSFoundation.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7FFF31B1C34EE2955BCFB13F4E47FFA3F1335910"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ilyathewhite\/Euler.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "99095F911BC0B3EA8C283EBF920BF40D43CC3F5F"
+    }
+  ]
+}

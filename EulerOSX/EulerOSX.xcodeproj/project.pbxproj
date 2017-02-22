@@ -1,0 +1,331 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09BA69841D27F5B200ECE505 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BA69831D27F5B200ECE505 /* AppDelegate.swift */; };
+		09BA69861D27F5B200ECE505 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BA69851D27F5B200ECE505 /* ViewController.swift */; };
+		09BA69881D27F5B200ECE505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09BA69871D27F5B200ECE505 /* Assets.xcassets */; };
+		09BA698B1D27F5B200ECE505 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09BA69891D27F5B200ECE505 /* Main.storyboard */; };
+		09BA69981D27F60300ECE505 /* EulerSketchOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BA69971D27F5EA00ECE505 /* EulerSketchOSX.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		09BA69961D27F5EA00ECE505 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09BA69921D27F5EA00ECE505 /* EulerSketchOSX.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 09BA695F1D276F5500ECE505;
+			remoteInfo = EulerSketchOSX;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		093A51251D28447D00E20FC4 /* EulerSketchOSX.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = EulerSketchOSX.playground; sourceTree = "<group>"; };
+		09BA69801D27F5B200ECE505 /* EulerOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EulerOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		09BA69831D27F5B200ECE505 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		09BA69851D27F5B200ECE505 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		09BA69871D27F5B200ECE505 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		09BA698A1D27F5B200ECE505 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		09BA698C1D27F5B200ECE505 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09BA69921D27F5EA00ECE505 /* EulerSketchOSX.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EulerSketchOSX.xcodeproj; path = ../EulerSketch/OSX/EulerSketchOSX.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		09BA697D1D27F5B200ECE505 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09BA69981D27F60300ECE505 /* EulerSketchOSX.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09BA69771D27F5B200ECE505 = {
+			isa = PBXGroup;
+			children = (
+				09BA69921D27F5EA00ECE505 /* EulerSketchOSX.xcodeproj */,
+				09BA69821D27F5B200ECE505 /* EulerOSX */,
+				09BA69811D27F5B200ECE505 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		09BA69811D27F5B200ECE505 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09BA69801D27F5B200ECE505 /* EulerOSX.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		09BA69821D27F5B200ECE505 /* EulerOSX */ = {
+			isa = PBXGroup;
+			children = (
+				093A51251D28447D00E20FC4 /* EulerSketchOSX.playground */,
+				09BA69831D27F5B200ECE505 /* AppDelegate.swift */,
+				09BA69851D27F5B200ECE505 /* ViewController.swift */,
+				09BA69871D27F5B200ECE505 /* Assets.xcassets */,
+				09BA69891D27F5B200ECE505 /* Main.storyboard */,
+				09BA698C1D27F5B200ECE505 /* Info.plist */,
+			);
+			path = EulerOSX;
+			sourceTree = "<group>";
+		};
+		09BA69931D27F5EA00ECE505 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09BA69971D27F5EA00ECE505 /* EulerSketchOSX.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		09BA697F1D27F5B200ECE505 /* EulerOSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09BA698F1D27F5B200ECE505 /* Build configuration list for PBXNativeTarget "EulerOSX" */;
+			buildPhases = (
+				09BA697C1D27F5B200ECE505 /* Sources */,
+				09BA697D1D27F5B200ECE505 /* Frameworks */,
+				09BA697E1D27F5B200ECE505 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EulerOSX;
+			productName = EulerOSX;
+			productReference = 09BA69801D27F5B200ECE505 /* EulerOSX.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		09BA69781D27F5B200ECE505 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Ilya Belenkiy";
+				TargetAttributes = {
+					09BA697F1D27F5B200ECE505 = {
+						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
+					};
+				};
+			};
+			buildConfigurationList = 09BA697B1D27F5B200ECE505 /* Build configuration list for PBXProject "EulerOSX" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 09BA69771D27F5B200ECE505;
+			productRefGroup = 09BA69811D27F5B200ECE505 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 09BA69931D27F5EA00ECE505 /* Products */;
+					ProjectRef = 09BA69921D27F5EA00ECE505 /* EulerSketchOSX.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				09BA697F1D27F5B200ECE505 /* EulerOSX */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		09BA69971D27F5EA00ECE505 /* EulerSketchOSX.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EulerSketchOSX.framework;
+			remoteRef = 09BA69961D27F5EA00ECE505 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		09BA697E1D27F5B200ECE505 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09BA69881D27F5B200ECE505 /* Assets.xcassets in Resources */,
+				09BA698B1D27F5B200ECE505 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		09BA697C1D27F5B200ECE505 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09BA69861D27F5B200ECE505 /* ViewController.swift in Sources */,
+				09BA69841D27F5B200ECE505 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		09BA69891D27F5B200ECE505 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				09BA698A1D27F5B200ECE505 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		09BA698D1D27F5B200ECE505 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		09BA698E1D27F5B200ECE505 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		09BA69901D27F5B200ECE505 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EulerOSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = HS.EulerOSX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		09BA69911D27F5B200ECE505 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EulerOSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = HS.EulerOSX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		09BA697B1D27F5B200ECE505 /* Build configuration list for PBXProject "EulerOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09BA698D1D27F5B200ECE505 /* Debug */,
+				09BA698E1D27F5B200ECE505 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09BA698F1D27F5B200ECE505 /* Build configuration list for PBXNativeTarget "EulerOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09BA69901D27F5B200ECE505 /* Debug */,
+				09BA69911D27F5B200ECE505 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 09BA69781D27F5B200ECE505 /* Project object */;
+}

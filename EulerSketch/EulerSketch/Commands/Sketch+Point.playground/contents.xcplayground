@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='osx' display-mode='raw'>
+    <pages>
+        <page name='free point'/>
+        <page name='point on a circle'/>
+        <page name='point on a line'/>
+        <page name='point on a ray'/>
+        <page name='point labels'/>
+    </pages>
+</playground>
