@@ -15,17 +15,17 @@ class ViewController: NSViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
 
-      // try! ninePointCircle(sketch)
-      try! radicalAxis(sketch)
+      try! ninePointCircle(sketch)
+      // try! radicalAxis(sketch)
       sketchView.sketch = sketch
    }
    
    var sketchView: SketchView { return view as! SketchView }
 
    func ninePointCircle(_ s: Sketch) throws {
-      s.addPoint("A", hint: (150, 50))
-      s.addPoint("B", hint: (550, 50))
-      s.addPoint("C", hint: (425, 300))
+      s.addPoint("A", hint: (150, 150))
+      s.addPoint("B", hint: (550, 150))
+      s.addPoint("C", hint: (425, 400))
       
       s.addTriangle("ABC", style: .emphasized)
       
@@ -92,13 +92,13 @@ class ViewController: NSViewController {
       s.addPoint("O1", hint: (300, 300))
       
       // circle, draggable
-      s.addCircle("a", withCenter: "O1", radius: 75)
+      s.addCircle("a", withCenter: "O1", hintRadius: 75)
       
       // point O2, draggable
       s.addPoint("O2", hint: (400, 300))
       
       // circle, draggable
-      s.addCircle("b", withCenter: "O2", radius: 50)
+      s.addCircle("b", withCenter: "O2", hintRadius: 50)
       
       s.addRadicalAxis("c", ofCircles: "a", "b")      
    }
