@@ -9,7 +9,7 @@
 import Foundation
 
 /// The line protocol. Describes the line in its canonical form.
-protocol Line: Shape {
+public protocol Line: Shape {
    /// Part of canonical line form: Ax + By + C = 0
    var A: Double { get }
    
@@ -24,7 +24,7 @@ protocol Line: Shape {
 }
 
 /// Common operations on lines.
-extension Line {
+public extension Line {
    /// Returns the line slope. Returns nil if the line is vertical and has infinite slope.
    var slope: Double? {
       if self.B == 0.0 {
@@ -212,12 +212,12 @@ extension Line {
 
 /// The most basic `Line` value that can be used for further calculations
 /// or to construct a drawable line on the sketch.
-struct HSLine: Line {
-   var A = 0.0
-   var B = 0.0
-   var C = 0.0
-   
-   mutating func update(A: Double, B: Double, C: Double) -> Bool {
+public struct HSLine: Line {
+   private(set) public var A = 0.0
+   private(set) public var B = 0.0
+   private(set) public var C = 0.0
+
+   public mutating func update(A: Double, B: Double, C: Double) -> Bool {
       guard HSLine.testABC(A, B, C) else { return false }
       self.A = A
       self.B = B
@@ -225,7 +225,7 @@ struct HSLine: Line {
       return true
    }
    
-   init?(A: Double, B: Double, C: Double) {
+   public init?(A: Double, B: Double, C: Double) {
       guard HSLine.testABC(A, B, C) else { return nil }
       self.A = A
       self.B = B

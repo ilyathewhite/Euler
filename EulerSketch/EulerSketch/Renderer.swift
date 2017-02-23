@@ -120,11 +120,10 @@ public extension CGPoint {
 }
 
 extension HSPoint {
-   init(_ point: CGPoint, kind: PointKind = .regular) {
-      x = Double(point.x)
-      y = Double(point.y)
-      self.kind = kind
-   }
+    init(_ point: CGPoint, kind: PointKind = .regular) {
+        self = HSPoint(Double(point.x), Double(point.y))
+        self.kind = kind
+    }
 }
 
 /// The renderer protocol that abstracts how the sketch is actually drawn.

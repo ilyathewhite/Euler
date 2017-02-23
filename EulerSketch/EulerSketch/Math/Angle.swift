@@ -10,7 +10,7 @@ import Foundation
 
 /// The angle protocol. Describes a directed angle from one ray to another
 /// where the 2 rays have a common vertex.
-protocol Angle: Shape {
+public protocol Angle: Shape {
    /// Ray 1
    var ray1: Ray { get }
    
@@ -19,7 +19,7 @@ protocol Angle: Shape {
 }
 
 /// Common operations on angles
-extension Angle {
+public extension Angle {
    /// The angle vertex.
    var vertex: Point { return ray1.vertex }
 
@@ -77,11 +77,11 @@ extension Angle {
 
 /// The most basic `Angle` value that can be used for further calculations
 /// or to construct a drawable angle on the sketch.
-struct HSAngle : Angle {
-   var ray1: Ray
-   var ray2: Ray
+public struct HSAngle : Angle {
+   private(set) public var ray1: Ray
+   private(set) public var ray2: Ray
    
-   mutating func translateInPlace(by vector: Vector) {
+   public mutating func translateInPlace(by vector: Vector) {
       ray1.translateInPlace(by: vector)
    }
 }

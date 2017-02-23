@@ -9,7 +9,7 @@
 import Foundation
 
 /// The segment protocol. Describes the segment vertices.
-protocol Segment: Shape {
+public protocol Segment: Shape {
    /// Vertex 1.
    var vertex1: Point { get }
    
@@ -18,7 +18,7 @@ protocol Segment: Shape {
 }
 
 /// Common operations on segments.
-extension Segment {
+public extension Segment {
    /// The segment midpoint.
    var midPoint: HSPoint {
       return HSPoint((vertex1.x + vertex2.x) / 2.0, (vertex1.y + vertex2.y) / 2.0)
@@ -135,16 +135,16 @@ extension Segment {
 
 /// The most basic `Segment` value that can be used for further calculations
 /// or to construct a drawable segment on the sketch.
-struct HSSegment: Segment {
-   var vertex1: Point
-   var vertex2: Point
+public struct HSSegment: Segment {
+   private(set) public var vertex1: Point
+   private(set) public var vertex2: Point
    
-   mutating func translateInPlace(by vector: Vector) {
+   public mutating func translateInPlace(by vector: Vector) {
       vertex1.translateInPlace(by: vector)
       vertex2.translateInPlace(by: vector)
    }
    
-   init?(vertex1: Point, vertex2: Point) {
+   public init?(vertex1: Point, vertex2: Point) {
       guard vertex1 != vertex2 else {
          return nil
       }

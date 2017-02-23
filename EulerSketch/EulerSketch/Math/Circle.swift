@@ -9,7 +9,7 @@
 import Foundation
 
 /// The Circle protocol. Describes a circle by its center and radius.
-protocol Circle: Shape {
+public protocol Circle: Shape {
    /// The center.
    var center: Point { get }
    
@@ -18,7 +18,7 @@ protocol Circle: Shape {
 }
 
 /// Common operations on circles.
-extension Circle {
+public extension Circle {
    /// Returns the circle going through `point1`, `point2`, and `point3`.
    static func circle(point1 A: Point, point2 B: Point, point3 C: Point) -> HSCircle? {
       guard (A != B) && (B != C) && (A != C) else { return nil }
@@ -142,11 +142,11 @@ extension Circle {
 
 /// The most basic `Circle` value that can be used for further calculations
 /// or to construct a drawable circle on the sketch.
-struct HSCircle : Circle {
-   var center: Point
-   var radius: Double
+public struct HSCircle : Circle {
+   private(set) public var center: Point
+   private(set) public var radius: Double
    
-   mutating func translateInPlace(by vector: Vector) {
+   public mutating func translateInPlace(by vector: Vector) {
       center.translateInPlace(by: vector)
    }
 }

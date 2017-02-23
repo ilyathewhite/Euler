@@ -42,7 +42,7 @@ public func toDegrees(_ radians: Double) -> Double {
 public func square(_ x: Double) -> Double { return x * x }
 
 /// Describes the basic APIs that every geometric shape should have.
-protocol Shape {
+public protocol Shape {
    /// Returns the shape's closed point and distance to that point from `point`.
    func distanceFromPoint(_ point: Point) -> (Double, Point)
    

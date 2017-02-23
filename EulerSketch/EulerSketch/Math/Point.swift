@@ -10,7 +10,7 @@ import Foundation
 
 /// Describes how a point is constructed so that it can be reflected in
 /// the sketch.
-enum PointKind {
+public enum PointKind {
    /// A free (movable) point, or an intersection point. These points
    /// usually look like tiny circles with labels.
    case regular
@@ -46,7 +46,7 @@ enum PointKind {
 }
 
 /// The point protocol. Describes the point coordinates and how the point was constructed.
-protocol Point: Shape, CustomStringConvertible {
+public protocol Point: Shape, CustomStringConvertible {
    /// The `x` coordinate
    var x: Double { get }
    
@@ -71,27 +71,27 @@ extension Point {
    }
 }
 
-func vector(_ from: Point, _ to: Point) -> Vector {
+public func vector(_ from: Point, _ to: Point) -> Vector {
    return (to.x - from.x, to.y - from.y)
 }
 
-func vector(_ to: Point) -> Vector {
+public func vector(_ to: Point) -> Vector {
    return (dx: to.x, dy: to.y)
 }
 
 /// 2 poitns are equal if they have the same coordinates.
 // How they were consttructed doesn't matter.
-func ==(p1: Point, p2: Point) -> Bool {
+public func ==(p1: Point, p2: Point) -> Bool {
    return (p1.x == p2.x) && (p1.y == p2.y)
 }
 
 /// The negation of equality
-func !=(p1: Point, p2: Point) -> Bool {
+public func !=(p1: Point, p2: Point) -> Bool {
    return !(p1 == p2)
 }
 
 /// Common operations on points
-extension Point {
+public extension Point {
    /// Returns a new point translating this point by `(dx, dy)`. 
    func translate(by vector: Vector) -> HSPoint {
       return HSPoint(x + vector.dx, y + vector.dy)
@@ -138,18 +138,18 @@ extension Point {
 /// The most basic `Point` value that can be used for further calculations
 /// or to construct a drawable point on the sketch.
 public struct HSPoint: Point {
-   public var x: Double
-   public var y: Double
+   private(set) public var x: Double
+   private(set) public var y: Double
    
    var basicValue: HSPoint { return self }
    
-   var kind: PointKind
+   public var kind: PointKind
    
-   init(_ value: BasicPoint) {
+   public init(_ value: BasicPoint) {
       self.init(value.x, value.y)
    }
    
-   init(_ x: Double, _ y: Double, _ kind: PointKind) {
+   public init(_ x: Double, _ y: Double, _ kind: PointKind) {
       self.x = x
       self.y = y
       self.kind = kind
@@ -161,7 +161,7 @@ public struct HSPoint: Point {
       self.kind = .regular
    }
    
-   mutating func update(x: Double, y: Double) {
+   public mutating func update(x: Double, y: Double) {
       self.x = x
       self.y = y
    }

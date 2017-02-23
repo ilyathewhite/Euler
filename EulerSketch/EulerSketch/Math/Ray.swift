@@ -9,7 +9,7 @@
 import Foundation
 
 /// The ray protocol. Describes the ray via its vertex and the angle with the x axis.
-protocol Ray: Shape {
+public protocol Ray: Shape {
    /// The vertex.
    var vertex: Point { get }
    
@@ -21,7 +21,7 @@ protocol Ray: Shape {
 }
 
 /// Common operations on rays.
-extension Ray {
+public extension Ray {
    /// The line containing the ray.
    var line: HSLine { return HSLine.line(point: vertex, angle: angle) }
 
@@ -72,11 +72,11 @@ extension Ray {
 
 /// The most basic `Ray` value that can be used for further calculations
 /// or to construct a drawable ray on the sketch.
-struct HSRay: Ray {
-   var vertex: Point
-   var angle: Double
+public struct HSRay: Ray {
+   private(set) public var vertex: Point
+   private(set) public var angle: Double
    
-   mutating func update(_ vertex: Point, angle: Double) {
+   public mutating func update(_ vertex: Point, angle: Double) {
       self.vertex = vertex
       self.angle = angle
    }

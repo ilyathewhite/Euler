@@ -111,8 +111,7 @@ open class Sketch {
          eval()
       }
       else {
-         origin.x += dx
-         origin.y += dy
+        origin.update(x: origin.x + dx, y: origin.y + dy)
       }
    }
    
@@ -121,8 +120,7 @@ open class Sketch {
       for figure in figures {
          if let point = figure as? PointFigure , point.free {
             var pnt = point.value
-            pnt?.x *= factor
-            pnt?.y *= factor
+            pnt?.update(x: point.x * factor, y: point.y * factor)
             point.value = pnt
          }
       }
@@ -135,8 +133,7 @@ open class Sketch {
       for figure in figures {
          if let point = figure as? PointFigure , point.free {
             var pnt = point.value
-            pnt?.x += vector.dx;
-            pnt?.y += vector.dy;
+            pnt?.update(x: point.x + vector.dx, y: point.y + vector.dy)
             point.value = pnt
          }
       }

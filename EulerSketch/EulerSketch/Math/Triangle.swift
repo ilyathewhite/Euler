@@ -9,13 +9,13 @@
 import Foundation
 
 /// The Triangle protocol. Describes the triangle by its vertices.
-protocol Triangle {
+public protocol Triangle {
    /// The triangle vertices.
    var vertices: [Point] { get }
 }
 
 /// Common operations on triangles.
-extension Triangle {
+public extension Triangle {
    /// The opposite side for a given vertex.
    func oppositeSide(_ vertexIndex: Int) -> HSSegment {
       return HSSegment(vertex1: vertices[(vertexIndex + 1) % 3], vertex2: vertices[(vertexIndex + 2) % 3])!
@@ -71,10 +71,10 @@ extension Triangle {
 
 /// The most basic `Triangle` value that can be used for further calculations
 /// or to construct a drawable triangle on the sketch.
-struct HSTriangle : Triangle {
-   var vertices: [Point]
+public struct HSTriangle : Triangle {
+   private(set) public var vertices: [Point]
    
-   init?(_ p1: Point, _ p2: Point, _ p3: Point) {
+   public init?(_ p1: Point, _ p2: Point, _ p3: Point) {
       guard (p1 != p2) && (p2 != p3) && (p1 != p3) else { return nil }
       guard let (distance, _) = HSLine.line(point1: p1, point2: p2)?.distanceFromPoint(p3) , distance > 0 else {
          return nil
