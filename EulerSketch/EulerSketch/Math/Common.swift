@@ -18,6 +18,16 @@ public typealias BasicPoint = (x: Double, y: Double)
 /// Used to for assertions in computations.
 public let epsilon = 0.0000000001
 
+/// Returns whether two values differ by less than `epsilon`, which is as close to == as we can get for `Double` values.
+public func same(_ lhs: Double, _ rhs: Double) -> Bool {
+   return abs(lhs - rhs) < epsilon
+}
+
+/// Returns whether a value differs from 0 by less than `epsilon` which is as close to zero as we can get for `Double` values.
+public func isZero(_ value: Double) -> Bool {
+   return same(value, 0)
+}
+
 /// Converts degrees to radians.
 public func toRadians(_ degrees: Double) -> Double {
    return M_PI / 180.0 * degrees

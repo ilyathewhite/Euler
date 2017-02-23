@@ -47,7 +47,7 @@ extension Line {
    
    /// Whether the line contains `point`.
    func containsPoint(_ point: Point) -> Bool {
-      return abs(A * point.x + B * point.y + C) < epsilon
+      return isZero(A * point.x + B * point.y + C)
    }
    
    /// Returns the intersection of this line with `line2` or `nil` if the lines are parallel or the same.
@@ -128,7 +128,7 @@ extension Line {
    /// Returns the line going through `point` that forms a given `angle` from the `x` axis.
    /// The `angle` is in radians.
    static func line(point: Point, angle: Double) -> HSLine {
-      if (abs(cos(angle)) < epsilon) {
+      if isZero(abs(cos(angle))) {
          return HSLine(A: 1.0, B: 0.0, C: -point.x)!
       }
       

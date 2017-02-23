@@ -31,9 +31,9 @@ extension Circle {
       
       if let center = bisectorAB.intersect(bisectorBC) {
          let radius =  center.distanceToPoint(A)
-         guard abs(center.distanceToPoint(A) - radius) < epsilon else { return nil }
-         guard abs(center.distanceToPoint(B) - radius) < epsilon else { return nil }
-         guard abs(center.distanceToPoint(C) - radius) < epsilon else { return nil }
+         guard same(center.distanceToPoint(A), radius) else { return nil }
+         guard same(center.distanceToPoint(B), radius) else { return nil }
+         guard same(center.distanceToPoint(C), radius) else { return nil }
          return HSCircle(center: center, radius: radius)
       }
       else {
@@ -48,7 +48,7 @@ extension Circle {
    
    /// Whether `point` is on the circle.
    func containsPoint(_ point: Point) -> Bool {
-      return abs(center.distanceToPoint(point) - radius) < epsilon
+      return same(center.distanceToPoint(point), radius)
    }
    
    /// Returns the points at wchih tangent lines from `point` touch the circle.
@@ -75,7 +75,7 @@ extension Circle {
    static func radicalAxis(circle1: Circle, circle2: Circle) -> (point: HSPoint, angleFromXAxis: Double)? {
       // from Wikipedia on radical axis:
       let d = circle1.center.distanceToPoint(circle2.center)
-      guard d >= epsilon else { return nil }
+      guard !isZero(d) else { return nil }
       let x1 = (d + (square(circle1.radius) - square(circle2.radius)) / d) / 2.0
 
       if x1 > 0 {
