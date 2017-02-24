@@ -15,8 +15,10 @@ public typealias Vector = (dx: Double, dy: Double)
 public typealias BasicPoint = (x: Double, y: Double)
 
 /// The larest possible error of computation at which 2 values are considered the same.
-/// Used to for assertions in computations.
-public let epsilon = 0.0000000001
+/// Used to for assertions in computations. 
+/// - Note: A smaller epsilon may fail many valid assertions because `Double` is not precise
+/// enough for exact mathematical computations.
+public let epsilon = 0.000000001
 
 /// Returns whether two values differ by less than `epsilon`, which is as close to == as we can get for `Double` values.
 public func same(_ lhs: Double, _ rhs: Double) -> Bool {

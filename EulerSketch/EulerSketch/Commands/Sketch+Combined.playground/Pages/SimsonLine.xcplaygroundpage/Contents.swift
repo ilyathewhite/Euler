@@ -24,5 +24,14 @@ sketch.point("B", setNameLocation: .bottomRight)
 sketch.point("B1", setNameLocation: .topLeft)
 sketch.point("A1", setNameLocation: .bottomRight)
 
+sketch.assert("A1, B1, C1 are collinear") { [unowned sketch] in
+   let p1 = try sketch.getPoint("A1")
+   let p2 = try sketch.getPoint("B1")
+   let p3 = try sketch.getPoint("C1")
+   return collinear(points: [p1, p2, p3])
+}
+
+sketch.eval()
+
 // live view
 PlaygroundPage.current.liveView = sketch.quickView()

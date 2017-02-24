@@ -135,6 +135,10 @@ public extension Point {
    var basicValue: HSPoint { return HSPoint(x, y, kind) }
 }
 
+public func same(_ p1: Point, _ p2: Point) -> Bool {
+   return isZero(p1.distanceToPoint(p2))
+}
+
 /// The most basic `Point` value that can be used for further calculations
 /// or to construct a drawable point on the sketch.
 public struct HSPoint: Point {

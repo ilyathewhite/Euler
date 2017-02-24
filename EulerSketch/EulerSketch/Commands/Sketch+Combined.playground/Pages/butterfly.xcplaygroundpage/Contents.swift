@@ -35,5 +35,13 @@ sketch.addSegment("MP2", style: .emphasized)
 sketch.setMarkCount(1, forSegment: "MP2")
 sketch.setMarkCount(1, forSegment: "MQ2")
 
+sketch.assert("MQ2 == MP2") { [unowned sketch] in
+   let MQ2 = try sketch.getSegment("MQ2")
+   let MP2 = try sketch.getSegment("MP2")
+   return same(MQ2.length, MP2.length)
+}
+
+sketch.eval()
+
 // live view
 PlaygroundPage.current.liveView = sketch.quickView()

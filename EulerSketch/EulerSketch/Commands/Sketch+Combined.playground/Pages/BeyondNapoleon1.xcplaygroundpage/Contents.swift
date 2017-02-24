@@ -33,5 +33,14 @@ sketch.addTriangle("A1B1C1")
 
 sketch.point("C1", setNameLocation: .bottomRight)
 
+sketch.assert("Lines A2A3, B2B3, C2C3 are concurrent") { [unowned sketch] in
+   let A2A3 = try sketch.getLine("A2A3")
+   let B2B3 = try sketch.getLine("B2B3")
+   let C2C3 = try sketch.getLine("C2C3")
+   return concurrent(lines: [A2A3, B2B3, C2C3])
+}
+
+sketch.eval()
+
 // live view
 PlaygroundPage.current.liveView = sketch.quickView()

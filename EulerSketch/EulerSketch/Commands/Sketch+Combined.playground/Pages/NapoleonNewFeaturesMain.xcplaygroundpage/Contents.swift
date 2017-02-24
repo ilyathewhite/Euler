@@ -46,5 +46,22 @@ sketch.point("A", setNameLocation: .bottomLeft)
 sketch.point("B", setNameLocation: .bottomRight)
 sketch.point("C1", setNameLocation: .bottomRight)
 
+sketch.assert("AA2, BB2, CC@ are concurrent") { [unowned sketch] in
+   let AA2 = try sketch.getLine("AA2")
+   let BB2 = try sketch.getLine("BB2")
+   let CC2 = try sketch.getLine("CC2")
+   return concurrent(lines: [AA2, BB2, CC2])
+}
+
+sketch.assert("O1 is the nine point circle of triangle A1B1C1") { [unowned sketch] in
+   let A1 = try sketch.getPoint("A1")
+   let B1 = try sketch.getPoint("B1")
+   let C1 = try sketch.getPoint("C1")
+   let O1 = try sketch.getPoint("O1")
+   return same(HSTriangle(A1, B1, C1)!.ninePointCenter(), O1)
+}
+
+sketch.eval()
+
 // live view
 PlaygroundPage.current.liveView = sketch.quickView()

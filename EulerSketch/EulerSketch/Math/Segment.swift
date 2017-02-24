@@ -133,6 +133,10 @@ public extension Segment {
    }
 }
 
+public func same(_ s1: Segment, _ s2: Segment) -> Bool {
+   return same(s1.vertex1, s2.vertex1) && same(s1.vertex2, s2.vertex2)
+}
+
 /// The most basic `Segment` value that can be used for further calculations
 /// or to construct a drawable segment on the sketch.
 public struct HSSegment: Segment {

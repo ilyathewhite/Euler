@@ -37,12 +37,26 @@ sketch.addMidPoint("Z", ofSegment: "HP")
 sketch.setMarkCount(1, forSegment: "HZ")
 sketch.setMarkCount(1, forSegment: "ZP")
 
+sketch.assert("Z is the midpoint of HP") { [unowned sketch] in
+   let Z = try sketch.getPoint("Z")
+   let HP = try sketch.getSegment("HP")
+   return same(HP.midPoint, Z)
+}
+
+sketch.assert("Z is on circle h") { [unowned sketch] in
+   let Z = try sketch.getPoint("Z")
+   let h = try sketch.getCircle("h")
+   return h.containsPoint(Z)
+}
+
 // point adjustments
 sketch.point("A", setNameLocation: .bottomLeft)
 sketch.point("B", setNameLocation: .bottomRight)
 sketch.point("B1", setNameLocation: .topLeft)
 sketch.point("A1", setNameLocation: .bottomRight)
 sketch.point("P", setNameLocation: .bottomRight)
+
+sketch.eval()
 
 // live view
 PlaygroundPage.current.liveView = sketch.quickView()

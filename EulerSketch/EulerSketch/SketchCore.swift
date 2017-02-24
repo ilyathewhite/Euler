@@ -72,6 +72,21 @@ public enum SketchError: Error, CustomStringConvertible {
 
 /// The model of a complete geometric sketch.
 open class Sketch {
+   /// An assertion about the figures in the sketch
+   struct Assertion {
+      /// The message to print if the assertion fails
+      let message: String
+      
+      /// The condition that must be true for any valid configuration of the sketch
+      let assertion: () throws -> Bool
+      
+      func eval() throws {
+         if try !assertion() {
+            print("Assertion failed:\n\(message)\n")
+         }
+      }
+   }
+   
    /// The origin of the model coordinate system in View coordinates.
    var origin: HSPoint = HSPoint(0, 0)
    
@@ -84,6 +99,15 @@ open class Sketch {
    
    /// The constructor that creates an empty sketch.
    public init() {}
+
+   /// Assertions about the figures in the sketch
+   private var assertions: [Assertion] = []
+   
+   /// Adds an assertion that evaluates after the sketch evaluation if the evaluation succeeds.
+   /// This means that assertions are evaluated whenever the sketch changes.
+   public func assert(_ message: String, assertion: @escaping () throws -> Bool) {
+      assertions.append(Assertion(message: message, assertion: assertion))
+   }
    
    // MARK: Origin and Scale
    
@@ -174,6 +198,21 @@ open class Sketch {
       }
       
       return res
+   }
+   
+   /// A wrapper for getFigure() to get the basic values for assertions
+   func getFigureValue<T>(name: String) throws -> T where T: Shape {
+      let figure: Figure<T> = try getFigure(name: name)
+      return figure.value
+   }
+
+   /// The same wrapper as the generic function. It has a separate definition
+   /// because otherwise missing lines may not be automatically added to the sketch.
+   /// (This may happen because lines can be of different types, not just Figure<HSLine>.)
+   func getFigureValue(name: String) throws -> HSLine {
+      addLineIfNeeded(name)
+      let figure: Figure<HSLine> = try getFigure(name: name)
+      return figure.value
    }
    
    /// Adds `figure` to the lookup table.
@@ -338,6 +377,16 @@ open class Sketch {
       for figure in figures {
          finishEval(figure)
       }
+      
+      if !shouldRollback {
+         do {
+            try assertions.forEach { try $0.eval() }
+         }
+         catch {
+            print(error)
+         }
+      }
+      
       shouldRollback = false
    }
    
@@ -467,6 +516,39 @@ open class Sketch {
    
 }
 
+/// Extension for sketch assertions
+public extension Sketch {
+   /// Returns the point value for the point with the given name.
+   func getPoint(_ name: String) throws -> HSPoint {
+      return try getFigureValue(name: name)
+   }
+
+   /// Returns the segment value for the segment with the given name.
+   func getSegment(_ name: String) throws -> HSSegment {
+      return try getFigureValue(name: name)
+   }
+
+   /// Returns the line value for the line with the given name.
+   func getLine(_ name: String) throws -> HSLine {
+      return try getFigureValue(name: name)
+   }
+
+   /// Returns the ray value for the ray with the given name.
+   func getRay(_ name: String) throws -> HSRay {
+      return try getFigureValue(name: name)
+   }
+
+   /// Returns the angle value for the angle with the given name.
+   func getAngle(_ name: String) throws -> HSAngle {
+      return try getFigureValue(name: name)
+   }
+
+   /// Returns the circle value for the circle with the given name.
+   func getCircle(_ name: String) throws -> HSCircle {
+      return try getFigureValue(name: name)
+   }
+}
+
 /// Extension for quick look in playgrounds.
 extension Sketch: CustomPlaygroundQuickLookable {
    public func quickView() -> SketchView {
@@ -484,21 +566,5 @@ extension Sketch: CustomPlaygroundQuickLookable {
 extension FigureType {
    var summary: Sketch.FigureSummary {
       return Sketch.FigureSummary(string: summaryName, sketch: sketch!)
-   }
-}
-
-/// Generic Result type
-public enum Result<T>: CustomStringConvertible {
-   case success(T)
-   case failure(Error)
-   
-   public var description: String {
-      switch self {
-      case .success(let value):
-         return "✓, \(value)"
-         
-      case .failure(let error):
-         return "⨉, \(error)"
-      }
    }
 }

@@ -232,3 +232,21 @@ public struct HSLine: Line {
       self.C = C
    }
 }
+
+/// Whether the given points are all on the same line
+public func collinear(points: [Point]) -> Bool {
+   guard points.count > 1 else { return true }
+   let p1 = points[0]
+   guard let p2 = points.first(where: { $0 != p1 }) else { return true }
+   let line = HSLine.line(point1: p1, point2: p2)!
+   return points.allMatch { (line.containsPoint($0)) }
+}
+
+/// Whether the given lines intersect at the same point
+public func concurrent(lines: [Line]) -> Bool {
+   guard lines.count > 1 else { return true }
+   let line1 = lines.first!
+   guard let line2 = lines.first(where: { line1.intersect($0) != nil }) else { return false }
+   let pnt = line1.intersect(line2)!
+   return lines.dropFirst().allMatch { $0.intersect(line1).map { same($0, pnt) } ?? false }
+}

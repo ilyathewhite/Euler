@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		090D41211D461D3D000316ED /* SketchCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090D41201D461D3D000316ED /* SketchCore.swift */; };
+		09757FA21E5FB505002EAAFD /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09757FA11E5FB505002EAAFD /* Utilities.swift */; };
 		09AF47AB1D46EDA2004DAFA9 /* PointFigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AF47AA1D46EDA2004DAFA9 /* PointFigure.swift */; };
 		09AF47AD1D46EDFE004DAFA9 /* LineFigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AF47AC1D46EDFE004DAFA9 /* LineFigure.swift */; };
 		09AF47AF1D46EE52004DAFA9 /* SegmentFigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AF47AE1D46EE52004DAFA9 /* SegmentFigure.swift */; };
@@ -50,6 +51,7 @@
 		094155231D73A98E00AD15ED /* Sketch+Segment.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Sketch+Segment.playground"; path = "../EulerSketch/Commands/Sketch+Segment.playground"; sourceTree = SOURCE_ROOT; };
 		095D26791DFDD8D400F123F6 /* Sketch+Rotation.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Sketch+Rotation.playground"; path = "../EulerSketch/Commands/Transformations/Sketch+Rotation.playground"; sourceTree = SOURCE_ROOT; };
 		096224601D732C1F00A78504 /* Sketch+Point.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Sketch+Point.playground"; path = "../EulerSketch/Commands/Sketch+Point.playground"; sourceTree = SOURCE_ROOT; };
+		09757FA11E5FB505002EAAFD /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = ../EulerSketch/Utilities.swift; sourceTree = SOURCE_ROOT; };
 		0988D4831D7AE25C000E2D28 /* Sketch+Circle.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Sketch+Circle.playground"; path = "../EulerSketch/Commands/Sketch+Circle.playground"; sourceTree = SOURCE_ROOT; };
 		09892A221DFE03B4001E17B9 /* Sketch+PointReflection.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Sketch+PointReflection.playground"; path = "../EulerSketch/Commands/Transformations/Sketch+PointReflection.playground"; sourceTree = SOURCE_ROOT; };
 		099C2A0C1D8753E1000D7A3A /* Sketch+Intersections.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Sketch+Intersections.playground"; path = "../EulerSketch/Commands/Sketch+Intersections.playground"; sourceTree = SOURCE_ROOT; };
@@ -164,6 +166,7 @@
 				09BA69711D27700400ECE505 /* Renderer.swift */,
 				09BA696D1D27700400ECE505 /* SketchViewOSX.swift */,
 				09BA696A1D276FF000ECE505 /* EulerSketchOSX.h */,
+				09757FA11E5FB505002EAAFD /* Utilities.swift */,
 				09BA69641D276F5500ECE505 /* Info.plist */,
 			);
 			path = EulerSketchOSX;
@@ -281,6 +284,7 @@
 				09AF47C21D46F1E8004DAFA9 /* Segment.swift in Sources */,
 				090D41211D461D3D000316ED /* SketchCore.swift in Sources */,
 				09BB0E4B1D46E8690019DB77 /* Sketch+PointReflection.swift in Sources */,
+				09757FA21E5FB505002EAAFD /* Utilities.swift in Sources */,
 				09BB0E3A1D46AA100019DB77 /* Sketch+Ray.swift in Sources */,
 				09AF47BA1D46F0C0004DAFA9 /* Point.swift in Sources */,
 				09AF47AF1D46EE52004DAFA9 /* SegmentFigure.swift in Sources */,

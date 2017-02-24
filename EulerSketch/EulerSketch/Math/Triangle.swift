@@ -67,6 +67,11 @@ public extension Triangle {
    func circumcenter() -> HSPoint {
       return sideBisector(0, vertexIndex2: 1).intersect(sideBisector(1, vertexIndex2: 2))!
    }
+   
+   // The triangle nine point center.
+   func ninePointCenter() -> HSPoint {
+      return HSTriangle(median(0).vertex2, median(1).vertex2, median(2).vertex2)!.circumcenter()
+   }
 }
 
 /// The most basic `Triangle` value that can be used for further calculations
