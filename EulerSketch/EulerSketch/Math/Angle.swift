@@ -84,4 +84,9 @@ public struct HSAngle : Angle {
    public mutating func translateInPlace(by vector: Vector) {
       ray1.translateInPlace(by: vector)
    }
+   
+   public init(ray1: Ray, ray2: Ray) {
+      self.ray1 = ray1
+      self.ray2 = ray2
+   }
 }

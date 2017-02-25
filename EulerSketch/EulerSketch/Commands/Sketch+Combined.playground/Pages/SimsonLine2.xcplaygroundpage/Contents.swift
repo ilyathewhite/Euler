@@ -31,7 +31,8 @@ sketch.addPerpendicular("BBh", toSegment: "AC", style: .extra)
 sketch.addPerpendicular("CCh", toSegment: "AB", style: .extra)
 sketch.addCircumcircle("h", ofTriangle: "AhBhCh", style: .extra)
 
-// the theorem
+// results
+
 sketch.addSegment("HP", style: .emphasized)
 sketch.addMidPoint("Z", ofSegment: "HP")
 sketch.setMarkCount(1, forSegment: "HZ")
@@ -49,14 +50,14 @@ sketch.assert("Z is on circle h") { [unowned sketch] in
    return h.containsPoint(Z)
 }
 
-// point adjustments
+sketch.eval()
+
+// sketch adjustments
 sketch.point("A", setNameLocation: .bottomLeft)
 sketch.point("B", setNameLocation: .bottomRight)
 sketch.point("B1", setNameLocation: .topLeft)
 sketch.point("A1", setNameLocation: .bottomRight)
 sketch.point("P", setNameLocation: .bottomRight)
-
-sketch.eval()
 
 // live view
 PlaygroundPage.current.liveView = sketch.quickView()

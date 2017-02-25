@@ -19,10 +19,7 @@ sketch.addPerpendicular("PC1", toSegment: "AB")
 sketch.addSegment("C1A1", style: .emphasized)
 sketch.addSegment("C1B1", style: .emphasized)
 
-sketch.point("A", setNameLocation: .bottomLeft)
-sketch.point("B", setNameLocation: .bottomRight)
-sketch.point("B1", setNameLocation: .topLeft)
-sketch.point("A1", setNameLocation: .bottomRight)
+// result
 
 sketch.assert("A1, B1, C1 are collinear") { [unowned sketch] in
    let p1 = try sketch.getPoint("A1")
@@ -32,6 +29,13 @@ sketch.assert("A1, B1, C1 are collinear") { [unowned sketch] in
 }
 
 sketch.eval()
+
+// sketch adjustments
+
+sketch.point("A", setNameLocation: .bottomLeft)
+sketch.point("B", setNameLocation: .bottomRight)
+sketch.point("B1", setNameLocation: .topLeft)
+sketch.point("A1", setNameLocation: .bottomRight)
 
 // live view
 PlaygroundPage.current.liveView = sketch.quickView()

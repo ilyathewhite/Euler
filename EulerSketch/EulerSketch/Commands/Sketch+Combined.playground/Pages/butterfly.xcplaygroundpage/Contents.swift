@@ -32,6 +32,8 @@ sketch.addIntersection("P2", ofSegment: "PQ1", andSegment: "AB")
 sketch.addSegment("MQ2", style: .emphasized)
 sketch.addSegment("MP2", style: .emphasized)
 
+// result
+
 sketch.setMarkCount(1, forSegment: "MP2")
 sketch.setMarkCount(1, forSegment: "MQ2")
 

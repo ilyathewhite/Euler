@@ -2,10 +2,12 @@
 <playground version='6.0' target-platform='macos' executeOnSourceChanges='false'>
     <pages>
         <page name='butterfly'/>
-        <page name='Napoleon1'/>
+        <page name='Tangents1'/>
+        <page name='Tangents2'/>
+        <page name='NapoleonNewFeaturesMain'/>
         <page name='BeyondNapoleon1'/>
         <page name='BeyondNapoleon2'/>
-        <page name='SimpsonLine'/>
-        <page name='SimpsonLine2'/>
+        <page name='SimsonLine'/>
+        <page name='SimsonLine2'/>
     </pages>
 </playground>

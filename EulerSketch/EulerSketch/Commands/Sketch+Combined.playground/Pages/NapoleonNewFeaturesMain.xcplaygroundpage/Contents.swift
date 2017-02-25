@@ -46,6 +46,8 @@ sketch.point("A", setNameLocation: .bottomLeft)
 sketch.point("B", setNameLocation: .bottomRight)
 sketch.point("C1", setNameLocation: .bottomRight)
 
+// results
+
 sketch.assert("AA2, BB2, CC@ are concurrent") { [unowned sketch] in
    let AA2 = try sketch.getLine("AA2")
    let BB2 = try sketch.getLine("BB2")
