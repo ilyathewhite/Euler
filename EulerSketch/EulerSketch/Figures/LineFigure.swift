@@ -61,12 +61,12 @@ class SimpleLineFigure: LineFigure {
          }
       }
       
-      let handleName = FigureNamePrefix.Handle.rawValue + fullName + point2.fullName
+      let handleName = "\(FigureNamePrefix.Handle.rawValue)for_\(fullName)_at_\(point2.fullName)"
       let handle = try! PointFigure(name: handleName, usedFigures: FigureSet([point1, point2]), evalFunc: makeHandleEvalFunc(LineFigure.defaultHandleDistance))
       handle.updateKind(.handle)
       handle.dragUpdateFunc = { [unowned handle] (point, vector) in
          let ray = HSSegment(vertex1: point1, vertex2: point2)!.ray
-         let foot = ray.line.footFromPoint(point ?? handle.translate(by: vector))
+         let foot = ray.line.footFromPoint((point ?? handle).translate(by: vector))
          guard ray.containsLinePoint(foot) else { return }
          let dist = point1.distanceToPoint(foot) - point1.distanceToPoint(point2)
          guard (dist > LineFigure.defaultHandleDistance) else { return }
@@ -112,6 +112,10 @@ class CompoundLineFigure: LineFigure {
       }
    }
    
+   override var dragEndMessage: String  {
+      return "finished dragging \(fullName), angle from X axis = \(toDegrees(ray1.angle))"
+   }
+   
    // init
    
    /// The eval function for a specific vertex and angle.
@@ -131,11 +135,13 @@ class CompoundLineFigure: LineFigure {
    var rayNamePrefix: String { return FigureNamePrefix.Part.rawValue + fullName }
    
    /// Creates a line from a given point and the counterclockwise angle that the line forms from the `X` axis.
-   init(name: String, vertex: PointFigure, angle: Double) throws {
+   init(name: String, vertex: PointFigure, hintAngle angle: Double) throws {
       try super.init(name: name, usedFigures: FigureSet(vertex), evalFunc: CompoundLineFigure.makeEvalFunc(vertex: vertex, angle: angle))
       
-      ray1 = try! RayFigure(name: rayNamePrefix + "_1", vertex: vertex, angle: angle)
-      ray2 = try! RayFigure(name: rayNamePrefix + "_2", vertex: vertex, angle: angle + M_PI)
+      ray1 = try! RayFigure(name: rayNamePrefix + "_1", vertex: vertex, hintAngle: angle)
+      ray1.dragUpdateFunc = nil
+      ray2 = try! RayFigure(name: rayNamePrefix + "_2", vertex: vertex, hintAngle: angle + M_PI)
+      ray2.dragUpdateFunc = nil
    }
    
    /// Creates a line from a given point and the counterclockwise angle function that the line forms from the `X` axis.

@@ -18,20 +18,20 @@ sketch.addPoint("C", hint: (500, 250))
 sketch.addTriangle("ABC")
 
 // label adjustments
-sketch.point("A", setNameLocation: .BottomLeft)
-sketch.point("C", setNameLocation: .BottomRight)
+sketch.point("A", setNameLocation: .bottomLeft)
+sketch.point("C", setNameLocation: .bottomRight)
 
 // median BBm
 sketch.addMedian("BBm", ofTriangle: "ABC")
-sketch.point("Bm", setNameLocation: .BottomRight)
+sketch.point("Bm", setNameLocation: .bottomRight)
 
 // altitude BBh
 sketch.addAltitude("BBh", ofTriangle: "ABC")
-sketch.point("Bh", setNameLocation: .BottomRight)
+sketch.point("Bh", setNameLocation: .bottomRight)
 
 // bisector BBc
 sketch.addBisector("BBc", ofTriangle: "ABC")
-sketch.point("Bc", setNameLocation: .BottomRight)
+sketch.point("Bc", setNameLocation: .bottomRight)
 
 // live view
 PlaygroundPage.current.liveView = sketch.quickView()

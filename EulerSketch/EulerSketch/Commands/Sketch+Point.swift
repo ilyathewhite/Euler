@@ -81,4 +81,20 @@ extension Sketch {
          return .failure(error)
       }
    }
+   
+   /// Simulates dragging a given point to a given location. The intent of this function is to
+   /// set the best handle location. Handles for different figures need different full names to avoid
+   /// name collisions, so a handle name cannot be deduced from its short name, which is why this function needs
+   /// the point full name.
+   /// The function is called `dragPoint` instead of `movePoint` because the actual end location may
+   /// be different from `location`, which is used only as a hint, exactly as during dragging.
+   @discardableResult public func dragPoint(fullName: String, to location: BasicPoint) -> Result<Bool> {
+      guard let pointFigure: PointFigure = findFigure(fullName: fullName) as? PointFigure else {
+         return .failure(SketchError.invalidValue(argName: fullName))
+      }
+      let vector = (dx: location.x - pointFigure.x, dy: location.y - pointFigure.y)
+      pointFigure.dragUpdateFunc?(pointFigure, vector)
+      eval()
+      return .success(true)
+   }
 }

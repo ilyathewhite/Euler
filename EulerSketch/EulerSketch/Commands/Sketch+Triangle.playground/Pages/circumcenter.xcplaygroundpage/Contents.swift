@@ -18,12 +18,12 @@ sketch.addPoint("C", hint: (500, 250))
 sketch.addTriangle("ABC")
 
 // label adjustments
-sketch.point("A", setNameLocation: .BottomLeft)
-sketch.point("C", setNameLocation: .BottomRight)
+sketch.point("A", setNameLocation: .bottomLeft)
+sketch.point("C", setNameLocation: .bottomRight)
 
 // circumcenter
 sketch.addCircumcenter("O", ofTriangle: "ABC")
-sketch.point("O", setNameLocation: .BottomRight)
+sketch.point("O", setNameLocation: .bottomRight)
 
 // circumcircle
 sketch.addCircumcircle("c", ofTriangle: "ABC", style: .emphasized)

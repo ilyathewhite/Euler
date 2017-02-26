@@ -246,6 +246,11 @@ open class Sketch {
    
    // MARK: Dragging
    
+   func dragEndMessage(figureFullName: String) -> String? {
+      guard let figure = findFigure(fullName: figureFullName) else { return nil }
+      return figure.dragEndMessage
+   }
+   
    /// Returns the closest draggable figure and its closest point from `point` at a distance no larger than `minDistance`.
    /// All points are in the sketch coordinates.
    func closestDraggableFigureFromPoint(_ point: Point, minDistance: Double) -> (FigureType?, Point?) {

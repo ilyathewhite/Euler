@@ -22,6 +22,10 @@ class CircleFigure: Figure<HSCircle>, Circle {
       renderer.drawCircle(center: center, radius: radius)
    }
    
+   override var dragEndMessage: String  {
+      return "finished dragging \(fullName), radius = \(radius)"
+   }
+   
    // init
    
    /// Creates an eval function that returns a circle with a given center and radius.
@@ -30,9 +34,9 @@ class CircleFigure: Figure<HSCircle>, Circle {
    }
 
    /// The drag update function. Changes the radius of the circle to match the dragged point.
-   func radiusUpdateFunc(_ point: Point?, vector: Vector) {
+   func radiusUpdateFunc(from point: Point?, by vector: Vector) {
       if let point = point {
-         let radius = self.center.distanceToPoint(point)
+         let radius = self.center.distanceToPoint(point.translate(by: vector))
          evalFunc = CircleFigure.makeEvalFunc(self.center, radius: radius)
       }
    }
@@ -47,7 +51,7 @@ class CircleFigure: Figure<HSCircle>, Circle {
    }
 
    /// Creates a circle with a given center and a radius.
-   init(name: String, center O: PointFigure, radius: Double) throws {
+   init(name: String, center O: PointFigure, hintRadius radius: Double) throws {
       try super.init(name: name, usedFigures: FigureSet(O)) { HSCircle(center: O, radius: radius) }
       dragUpdateFunc = radiusUpdateFunc
    }
@@ -58,7 +62,7 @@ class CircleFigure: Figure<HSCircle>, Circle {
    }
    
    /// Creates a circle with given center coordinates and a given radius.
-   init(name: String, _ centerX: Double, _ centerY: Double, radius: Double) {
+   init(name: String, _ centerX: Double, _ centerY: Double, hintRadius radius: Double) {
       super.init(name: name, value: HSCircle(center: HSPoint(centerX, centerY), radius: radius))
       dragUpdateFunc = radiusUpdateFunc
    }

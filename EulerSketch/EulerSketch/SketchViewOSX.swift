@@ -91,8 +91,8 @@
          let dragEndLocation = viewPointFromEvent(theEvent)
          delegate?.didDrag(dragFigureName, fromPoint: dragStartLocation, toPoint: dragEndLocation)
          Swift.print(sketchPointFromViewPoint(dragEndLocation).description)
-         if let dragFigureName = dragFigureName {
-            Swift.print("finished dragging \(dragFigureName)")
+         if let figureName = dragFigureName, let message = sketch?.dragEndMessage(figureFullName: figureName) {
+            Swift.print(message)
          }
          prevDragLocation = nil
          dragFigureName = nil

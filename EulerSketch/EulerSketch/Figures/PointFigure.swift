@@ -190,7 +190,7 @@ class PointFigure: Figure<HSPoint>, Point {
       super.init(name: name, value: value)
       dragUpdateFunc = { [unowned self] (point, vector) in
          if let point = point {
-            self.value = point.basicValue
+            self.value = point.basicValue.translate(by: vector)
          }
          else {
             self.translateInPlace(by: vector)
@@ -215,7 +215,7 @@ class PointFigure: Figure<HSPoint>, Point {
       try self.init(name: name, usedFigures: usedFigures, evalFunc: makeEvalFunc(hint))
       
       dragUpdateFunc = { [unowned self] (point, vector) in
-         let hint = point ?? self.value.translate(by: vector)
+         let hint = (point ?? self.value).translate(by: vector)
          self.evalFunc = makeEvalFunc(hint)
       }
    }

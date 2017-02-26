@@ -18,24 +18,24 @@ sketch.addPoint("C", hint: (500, 250))
 sketch.addTriangle("ABC")
 
 // label adjustments
-sketch.point("A", setNameLocation: .BottomLeft)
-sketch.point("C", setNameLocation: .BottomRight)
+sketch.point("A", setNameLocation: .bottomLeft)
+sketch.point("C", setNameLocation: .bottomRight)
 
 // median BBm
 sketch.addMedian("BBm", ofTriangle: "ABC", style: .extra)
-sketch.point("Bm", setNameLocation: .BottomRight)
+sketch.point("Bm", setNameLocation: .bottomRight)
 
 // median CCm
 sketch.addMedian("CCm", ofTriangle: "ABC", style: .extra)
-sketch.point("Cm", setNameLocation: .TopLeft)
+sketch.point("Cm", setNameLocation: .topLeft)
 
 // median AAm
 sketch.addMedian("AAm", ofTriangle: "ABC", style: .extra)
-sketch.point("Bm", setNameLocation: .BottomRight)
+sketch.point("Bm", setNameLocation: .bottomRight)
 
 // centroid
 sketch.addCentroid("M", ofTriangle: "ABC")
-sketch.point("M", setNameLocation: .BottomRight)
+sketch.point("M", setNameLocation: .bottomRight)
 
 // live view
 PlaygroundPage.current.liveView = sketch.quickView()

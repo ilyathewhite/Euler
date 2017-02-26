@@ -154,8 +154,12 @@ protocol FigureType: class, Shape, Drawable, Draggable, Evaluable {
    /// The geometric name (for example `ABC` for a triangle).
    var name: String { get }
    
-   // /The unique geometric name (for example, triangle_ABC).
+   /// The unique geometric name (for example, triangle_ABC).
    var fullNamePrefix: FigureNamePrefix { get }
+   
+   /// The message printed at the end of dragging the figure. This can be useful
+   /// to show updated information about the figure, for example a new angle or radius.
+   var dragEndMessage: String { get }
 }
 
 extension FigureType {
@@ -238,7 +242,7 @@ class Figure<F: Shape>: FigureType {
    fileprivate var updateState: FigureUpdateState = .ready
    
    func applyUpdateFunc(from point: Point?, by vector: Vector) {
-      guard let dragUpdateFunc = dragUpdateFunc , (updateState  == .ready) else { return }
+      guard let dragUpdateFunc = dragUpdateFunc, (updateState  == .ready) else { return }
       
       updateState  = .started
       dragUpdateFunc(point, vector)
@@ -251,6 +255,10 @@ class Figure<F: Shape>: FigureType {
       return { (point, vector) in
          usedFigure.applyUpdateFunc(from: point, by: vector)
       }
+   }
+   
+   var dragEndMessage: String  {
+      return "finished dragging \(fullName)"
    }
    
    // shape

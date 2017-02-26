@@ -35,9 +35,9 @@ extension Sketch {
 
    /// Adds a circle with a given center (specified by its coordinates) and radius.
    /// The circle center is fixed, but the radius may be changed by dragging the circle.
-   @discardableResult public func addCircle(_ circleName: String, withCenter center: BasicPoint, hintRadius: Double, style: DrawingStyle? = nil) -> FigureResult {
+   @discardableResult public func addCircle(_ circleName: String, withCenter center: BasicPoint, hintRadius radius: Double, style: DrawingStyle? = nil) -> FigureResult {
       do {
-         let figure = CircleFigure(name: circleName, center.x, center.y, radius: hintRadius)
+         let figure = CircleFigure(name: circleName, center.x, center.y, hintRadius: radius)
          return .success(try addFigure(figure, style: style))
       }
       catch {
@@ -47,10 +47,10 @@ extension Sketch {
    
    /// Adds a circle with a given center (specified by the point name) and a radius.
    /// The radius can be changed by dragging the circle, and the center can be change as well if the point is draggable.
-   @discardableResult public func addCircle(_ circleName: String, withCenter centerName: String, hintRadius: Double, style: DrawingStyle? = nil) -> FigureResult {
+   @discardableResult public func addCircle(_ circleName: String, withCenter centerName: String, hintRadius radius: Double, style: DrawingStyle? = nil) -> FigureResult {
       do {
          let O: PointFigure = try getFigure(name: centerName)
-         let figure = try CircleFigure(name: circleName, center: O, radius: hintRadius)
+         let figure = try CircleFigure(name: circleName, center: O, hintRadius: radius)
          return .success(try addFigure(figure, style: style))
       }
       catch {

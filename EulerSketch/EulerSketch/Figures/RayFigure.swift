@@ -19,6 +19,10 @@ class RayFigure: Figure<HSRay>, Ray {
    // The default distance from the vertex to handle.
    static let defaultHandleDistance = 50.0
    
+   override var dragEndMessage: String  {
+      return "finished dragging \(fullName), angle from X axis = \(toDegrees(angle))"
+   }
+   
    // Ray protocol
    
    var vertex: Point { return value.vertex }
@@ -53,8 +57,8 @@ class RayFigure: Figure<HSRay>, Ray {
 
    /// The drag update function. Changes the angle of the ray to match the dragged point.
    func angleUpdateFunc(_ point: Point?, vector: Vector) {
-      if let point = point,
-         let segment = HSSegment(vertex1:vertex, vertex2: point) {
+      let point = (point ?? handle).translate(by: vector)
+      if let segment = HSSegment(vertex1:vertex, vertex2: point.translate(by: vector)) {
          evalFunc = RayFigure.makeAngleEvalFunc(vertex: self.vertex as! PointFigure, angle: segment.angleFromXAxis())
       }
    }
@@ -65,11 +69,11 @@ class RayFigure: Figure<HSRay>, Ray {
          return { [unowned self] in self.pointAtDistance(self.vertex.distanceToPoint(point) + distance) }
       }
       
-      let handleName = FigureNamePrefix.Handle.rawValue + fullName
+      let handleName = "\(FigureNamePrefix.Handle.rawValue)for_\(fullName)"
       let handle = try! PointFigure(name: handleName, usedFigures: FigureSet(self), evalFunc: makeHandleEvalFunc(distance))
       handle.updateKind(.handle)
       handle.dragUpdateFunc = { [unowned self, unowned handle] (dragPoint, vector) in
-         let pnt = dragPoint ?? handle.translate(by: vector)
+         let pnt = (dragPoint ?? handle).translate(by: vector)
          let foot = self.line.footFromPoint(pnt)
          guard self.containsLinePoint(foot) else { return }
          let dist = self.vertex.distanceToPoint(foot)
@@ -86,7 +90,7 @@ class RayFigure: Figure<HSRay>, Ray {
    }
 
    /// Creates a ray with a given vertex and angle.
-   init(name: String, vertex: PointFigure, angle: Double) throws {
+   init(name: String, vertex: PointFigure, hintAngle angle: Double) throws {
       vertexFigure = vertex
       try super.init(name: name, usedFigures: FigureSet(vertex), evalFunc: RayFigure.makeAngleEvalFunc(vertex: vertex, angle: angle))
       dragUpdateFunc = angleUpdateFunc

@@ -44,7 +44,7 @@ extension Sketch {
    @discardableResult public func addRay(_ rayName: String, fromPoint pointName: String, withHintAngleFromXaxis angle: Double, style: DrawingStyle? = nil) -> FigureResult {
       do {
          let A: PointFigure = try getFigure(name: pointName)
-         let figure = try RayFigure(name: rayName, vertex: A, angle: toRadians(angle))
+         let figure = try RayFigure(name: rayName, vertex: A, hintAngle: toRadians(angle))
          return .success(try addFigure(figure, style: style))
       }
       catch {

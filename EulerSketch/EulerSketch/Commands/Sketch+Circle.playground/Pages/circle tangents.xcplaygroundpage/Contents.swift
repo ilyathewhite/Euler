@@ -12,7 +12,7 @@ sketch.addPoint("O", hint: (300, 300))
 sketch.addPoint("A", hint: (100, 500))
 
 // circle, draggable
-sketch.addCircle("a", withCenter: "O", radius: 100)
+sketch.addCircle("a", withCenter: "O", hintRadius: 100)
 
 sketch.addTangent("AT1", toCircle: "a", selector: leftPoint)
 

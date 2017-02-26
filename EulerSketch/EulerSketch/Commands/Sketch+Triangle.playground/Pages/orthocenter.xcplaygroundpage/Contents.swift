@@ -18,24 +18,24 @@ sketch.addPoint("C", hint: (500, 250))
 sketch.addTriangle("ABC")
 
 // label adjustments
-sketch.point("A", setNameLocation: .BottomLeft)
-sketch.point("C", setNameLocation: .BottomRight)
+sketch.point("A", setNameLocation: .bottomLeft)
+sketch.point("C", setNameLocation: .bottomRight)
 
 // altitude BBm
 sketch.addAltitude("BBm", ofTriangle: "ABC", style: .extra)
-sketch.point("Bm", setNameLocation: .BottomRight)
+sketch.point("Bm", setNameLocation: .bottomRight)
 
 // altitude CCm
 sketch.addAltitude("CCm", ofTriangle: "ABC", style: .extra)
-sketch.point("Cm", setNameLocation: .TopLeft)
+sketch.point("Cm", setNameLocation: .topLeft)
 
 // altitude AAm
 sketch.addAltitude("AAm", ofTriangle: "ABC", style: .extra)
-sketch.point("Bm", setNameLocation: .BottomRight)
+sketch.point("Bm", setNameLocation: .bottomRight)
 
 // orthocenter
 sketch.addOrthocenter("H", ofTriangle: "ABC")
-sketch.point("H", setNameLocation: .BottomRight)
+sketch.point("H", setNameLocation: .bottomRight)
 
 // live view
 PlaygroundPage.current.liveView = sketch.quickView()

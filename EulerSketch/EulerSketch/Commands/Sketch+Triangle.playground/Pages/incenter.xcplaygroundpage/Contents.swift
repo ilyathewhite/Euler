@@ -18,24 +18,24 @@ sketch.addPoint("C", hint: (500, 250))
 sketch.addTriangle("ABC")
 
 // label adjustments
-sketch.point("A", setNameLocation: .BottomLeft)
-sketch.point("C", setNameLocation: .BottomRight)
+sketch.point("A", setNameLocation: .bottomLeft)
+sketch.point("C", setNameLocation: .bottomRight)
 
 // bisector BBi
 sketch.addBisector("BBi", ofTriangle: "ABC", style: .extra)
-sketch.point("Bi", setNameLocation: .BottomRight)
+sketch.point("Bi", setNameLocation: .bottomRight)
 
 // bisector CCi
 sketch.addBisector("CCi", ofTriangle: "ABC", style: .extra)
-sketch.point("Ci", setNameLocation: .TopLeft)
+sketch.point("Ci", setNameLocation: .topLeft)
 
 // bisector AAi
 sketch.addBisector("AAi", ofTriangle: "ABC", style: .extra)
-sketch.point("Ai", setNameLocation: .TopRight)
+sketch.point("Ai", setNameLocation: .topRight)
 
 // incenter
 sketch.addIncenter("I", ofTriangle: "ABC")
-sketch.point("I", setNameLocation: .BottomRight)
+sketch.point("I", setNameLocation: .bottomRight)
 
 // incircle
 sketch.addIncircle("c", ofTriangle: "ABC")

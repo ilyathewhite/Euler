@@ -14,10 +14,10 @@ class ViewController: NSViewController {
 
    override func viewDidLoad() {
       super.viewDidLoad()
-
+      sketchView.sketch = sketch
+      
       try! ninePointCircle(sketch)
       // try! radicalAxis(sketch)
-      sketchView.sketch = sketch
    }
    
    var sketchView: SketchView { return view as! SketchView }
