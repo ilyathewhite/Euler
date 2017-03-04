@@ -20,7 +20,10 @@ public enum SketchError: Error, CustomStringConvertible {
    
    /// Couldn't find a figure with a given name (for example, triangle ABC)
    case figureNotFound(name: String, kind: FigureKind)
-   
+
+   /// Couldn't find a figure with a given full name (for example, line_AB)
+   case figureFullNameNotFound(fullName: String)
+
    /// Tried to add the same figure twice.
    case figureAlreadyAdded(name: String, kind: FigureKind)
    
@@ -52,6 +55,8 @@ public enum SketchError: Error, CustomStringConvertible {
          return "Style \(styleName) not found."
       case let .figureNotFound(name, kind):
          return "\(kind.rawValue) \(name) not found."
+      case let .figureFullNameNotFound(fullName):
+        return "\(fullName) not found"
       case let .figureAlreadyAdded(name, kind):
          return "\(kind.rawValue) \(name) already added."
       case let .figureNotCreated(name, kind):

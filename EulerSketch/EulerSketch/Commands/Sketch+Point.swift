@@ -69,7 +69,33 @@ extension Sketch {
          return .failure(error)
       }
    }
-   
+
+    /// Adds a point on a ray at a given computed distance from the vertex. The computed distance is specified by a callback. 
+    // The figures used during computation need to be specified in the `usingFigures` parameter to ensure that when those figures
+    /// change, the point is recomputed.
+    @discardableResult public func addPoint(_ pointName: String, onRay rayName: String, atComputedDistanceFromVertex distance: @escaping () throws -> Double, usingFigures figureNames: [String], withStyle style: DrawingStyle? = nil) -> FigureResult {
+        do {
+            let rayFigure: RayFigure = try getFigure(name: rayName)
+            var usedFigures = FigureSet(rayFigure)
+            let otherUsedFigures = try figureNames.map { (fullName) -> FigureType in
+                guard let res = findFigure(fullName: fullName) else { throw SketchError.figureFullNameNotFound(fullName: fullName) }
+                return res
+            }
+            for figure in otherUsedFigures {
+                usedFigures.add(figure)
+            }
+
+            let figure = try PointFigure(name: pointName, usedFigures: usedFigures) {
+                guard let dist = try? distance() else { return nil }
+                return rayFigure.pointAtDistance(dist)
+            }
+            return .success(try addFigure(figure, style: style))
+        }
+        catch {
+            return .failure(error)
+        }
+    }
+
    /// Sets the location of the point name relative to the point, for example, top left.
    @discardableResult public func point(_ pointName: String, setNameLocation loc: PointLabelLocation) -> Result<Bool> {
       do {

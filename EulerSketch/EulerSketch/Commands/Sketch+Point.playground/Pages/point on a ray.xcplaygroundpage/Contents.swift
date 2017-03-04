@@ -20,6 +20,17 @@ sketch.addPoint("C", onRay: "AB", hint: (350, 300))
 // point D, on ray AB, fixed
 sketch.addPoint("D", onRay: "AB", atDistanceFromVertex: 90)
 
+sketch.addPoint(
+    "E",
+    onRay: "AB",
+    atComputedDistanceFromVertex: { [unowned sketch] in
+        let A = try sketch.getPoint("A")
+        let C = try sketch.getPoint("C")
+        return HSSegment(vertex1: A, vertex2: C)!.length * 2.0
+    },
+    usingFigures: ["point_A", "point_C"]
+)
+
 // live view
 PlaygroundPage.current.liveView = sketch.quickView()
 
