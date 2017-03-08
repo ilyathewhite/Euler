@@ -178,7 +178,8 @@ extension Sketch {
       let O: PointFigure = try getFigure(name: centerName)
       func dilation(_ point: Point) -> HSPoint {
          guard let segment = HSSegment(vertex1: O, vertex2: point) else { return O.value }
-         return segment.ray.pointAtDistance(O.distanceToPoint(point) * scale)
+         let angle = scale > 0 ? segment.ray.angle : segment.ray.angle + M_PI
+         return HSRay(vertex: O, angle: angle).pointAtDistance(O.distanceToPoint(point) * abs(scale))
       }
       return TransformationInfo(name: "dilation", f: dilation, usedFigures: [O])
    }

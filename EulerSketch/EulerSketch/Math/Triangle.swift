@@ -63,6 +63,25 @@ public extension Triangle {
       return bisector(0).line.intersect(bisector(1).line)!
    }
    
+   /// The excenter opposite a given vertex.
+   func excenter(_ vertexIndex: Int) -> HSPoint {
+      let p1 = vertices[vertexIndex]
+      let p2 = vertices[(vertexIndex + 1) % 3]
+      let p3 = vertices[(vertexIndex + 2) % 3]
+      
+      let angle1 = HSSegment(vertex1: p1, vertex2: p2)!.ray.angle
+      let ray11 = HSRay(vertex: p2, angle: angle1)
+      let ray12 = HSSegment(vertex1: p2, vertex2: p3)!.ray
+      let bisector1 = HSAngle(ray1: ray11, ray2: ray12).bisector
+      
+      let angle2 = HSSegment(vertex1: p1, vertex2: p3)!.ray.angle
+      let ray21 = HSRay(vertex: p3, angle: angle2)
+      let ray22 = HSSegment(vertex1: p3, vertex2: p2)!.ray
+      let bisector2 = HSAngle(ray1: ray21, ray2: ray22).bisector
+      
+      return bisector1.line.intersect(bisector2.line)!
+   }
+   
    /// The triangle circumcenter (the center of the circumscribed circle).
    func circumcenter() -> HSPoint {
       return sideBisector(0, vertexIndex2: 1).intersect(sideBisector(1, vertexIndex2: 2))!

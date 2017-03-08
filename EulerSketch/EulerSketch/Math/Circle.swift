@@ -50,6 +50,11 @@ public extension Circle {
    func containsPoint(_ point: Point) -> Bool {
       return same(center.distanceToPoint(point), radius)
    }
+
+   /// Whether the circle is tangent to a given circle.
+   func isTangentTo(circle: Circle) -> Bool {
+      return same(radius + circle.radius, center.distanceToPoint(circle.center))
+   }
    
    /// Returns the points at wchih tangent lines from `point` touch the circle.
    func tangentPointsFromPoint(point P: Point) -> [HSPoint] {

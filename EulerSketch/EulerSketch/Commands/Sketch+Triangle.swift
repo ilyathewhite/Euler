@@ -158,6 +158,24 @@ extension Sketch {
          return triangle.incenter()
       }
    }
+   
+   /// Adds the excenter of a given triangle opposite a given vertex
+   @discardableResult public func addExcenter(_ excenterName: String, ofTriangle triangleName: String, opposite vertexName: String, style: DrawingStyle? = nil) -> FigureResult {
+      do {
+         let (vertices, _) = try getTriangleInfo(triangleName)
+         guard let vertexIndex = vertices.index(where: { $0.name == vertexName }) else {
+            return .failure(SketchError.invalidValue(argName: vertexName))
+         }
+         
+         return addTriangleCenter(excenterName, inTriangle: triangleName, style: style, evalFuncName: "excenter") {
+            guard let triangle = HSTriangle($0, $1, $2) else { return nil }
+            return triangle.excenter(vertexIndex)
+         }
+      }
+      catch {
+         return .failure(error)
+      }
+   }
 
    /// Adds the circumcenter of a given triangle
    @discardableResult public func addCircumcenter(_ circumcenterName: String, ofTriangle triangleName: String, style: DrawingStyle? = nil) -> FigureResult {
@@ -175,6 +193,27 @@ extension Sketch {
          let figure = try CircleFigure(name: incircleName, usedFigures: FigureSet(vertices)) {
             guard let I = HSTriangle(vertices[0], vertices[1], vertices[2])?.incenter() else { return nil }
             guard let P = HSSegment(vertex1: vertices[0], vertex2: vertices[1])?.footFromPoint(I) else { return nil }
+            return HSCircle(center: I, radius: I.distanceToPoint(P))
+         }
+         
+         return .success(try addFigure(figure, style: style))
+      }
+      catch {
+         return .failure(error)
+      }
+   }
+   
+   /// Adds the excircle of a given triangle opposite a given vertex
+   @discardableResult public func addExcircle(_ excircleName: String, ofTriangle triangleName: String, opposite vertexName: String, style: DrawingStyle? = nil) -> FigureResult {
+      do {
+         let (vertices, _) = try getTriangleInfo(triangleName)
+         guard let vertexIndex = vertices.index(where: { $0.name == vertexName }) else {
+            return .failure(SketchError.invalidValue(argName: vertexName))
+         }
+         
+         let figure = try CircleFigure(name: excircleName, usedFigures: FigureSet(vertices)) {
+            guard let I = HSTriangle(vertices[0], vertices[1], vertices[2])?.excenter(vertexIndex) else { return nil }
+            guard let P = HSSegment(vertex1: vertices[(vertexIndex + 1) % 3], vertex2: vertices[(vertexIndex + 2) % 3])?.footFromPoint(I) else { return nil }
             return HSCircle(center: I, radius: I.distanceToPoint(P))
          }
          
