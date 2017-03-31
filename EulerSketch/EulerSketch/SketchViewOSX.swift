@@ -14,7 +14,7 @@
    }
    
    /// The sketch canvas using `NSView`.
-   open class SketchView: NSView {
+   open class SketchView: NSView, NSAnimationDelegate {
       open weak var sketch: Sketch?
       weak var delegate: SketchViewDelegate?
       
@@ -96,6 +96,57 @@
          }
          prevDragLocation = nil
          dragFigureName = nil
+      }
+
+      // the current animation
+      private var animation: ParametricCurveAnimation?
+
+      /// Animates how a free sketch point moves along the input parametric curve.
+      public func dragPoint(_ pointName: String, along curve: @escaping Sketch.ParametricCurve, duration: TimeInterval) {
+         let animation = ParametricCurveAnimation(
+            curve: curve,
+            progressAction: { [weak sketch, weak self] (point) in
+               sketch?.dragPoint(fullName: "point_\(pointName)", to: point.basicPoint)
+               self?.display()
+            },
+            duration: duration
+         )
+         self.animation = animation
+         animation.animationBlockingMode = .nonblocking
+         animation.delegate = self
+         animation.start()
+      }
+      
+      public func animationDidEnd(_ animation: NSAnimation) {
+         self.animation = nil
+      }
+   }
+   
+   /// Animation for parametric curve.
+   class ParametricCurveAnimation: NSAnimation {
+      typealias Curve = Sketch.ParametricCurve
+
+      /// the curve
+      private let curve: (Double) -> HSPoint
+      
+      /// The callback for the location of the animated point
+      private let progressAction: (HSPoint) -> ()
+
+      /// Constructs the animation with a specific curve, animated point location callback, and duration.
+      init(curve: @escaping Curve, progressAction: @escaping (HSPoint) -> (), duration: TimeInterval) {
+         self.curve = curve
+         self.progressAction = progressAction
+         super.init(duration: duration, animationCurve: .linear)
+      }
+      
+      override var currentProgress: NSAnimationProgress {
+         didSet {
+            progressAction(curve(Double(currentProgress)))
+         }
+      }
+      
+      required init?(coder: NSCoder) {
+         fatalError("init(coder:) has not been implemented")
       }
    }
    

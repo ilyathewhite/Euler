@@ -145,7 +145,8 @@ public struct HSPoint: Point {
    private(set) public var x: Double
    private(set) public var y: Double
    
-   var basicValue: HSPoint { return self }
+   public var basicValue: HSPoint { return self }
+   public var basicPoint: BasicPoint { return (x, y) }
    
    public var kind: PointKind
    

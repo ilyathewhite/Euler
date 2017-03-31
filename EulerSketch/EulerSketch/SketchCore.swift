@@ -559,6 +559,38 @@ public extension Sketch {
    }
 }
 
+/// Extension for sketch animations
+public extension Sketch {
+   /// Maps a parameter in [0, 1] to a point on the plane
+   typealias ParametricCurve = (Double) -> HSPoint
+
+   /// Returns a parametric curve that moves a point through a segment path from the first point to the second point.
+   static func makeSegmentParametricCurve(from p1: Point, to p2: Point) -> ParametricCurve? {
+      guard let segment = HSSegment(vertex1: p1, vertex2: p2) else { return nil }
+      let length = segment.length
+      let ray = segment.ray
+      return { param in ray.pointAtDistance(param * length) }
+   }
+
+   /// Returns a parametric curve that moves a point through the curve path in the reverse direction of the input curve.
+   static func makeReverseCurve(from curve: @escaping ParametricCurve) -> ParametricCurve {
+      return { param in curve(max(0.0, 1.0 - param)) }
+   }
+
+   /// Combines 2 parametric curves into 1 by moving a point through the first path when the parameter is in [0, 0.5],
+   /// and then through the second path when the parameter is in (0.5, 1].
+   static func combineCurves(curve1: @escaping ParametricCurve, curve2: @escaping ParametricCurve) -> ParametricCurve {
+      return { param in (param <= 0.5) ? curve1(min(2.0 * param, 1.0)) : curve2(min(2.0 * (param - 0.5), 1.0)) }
+   }
+
+   /// Returns a parametric curve where the point moves through the input curve path forward during the first half,
+   /// and then moves backward during the second half. 
+   // The implementation is a good example of how these APIs compose.
+   static func makeLoopCurve(from curve: @escaping ParametricCurve) -> ParametricCurve {
+      return combineCurves(curve1: curve, curve2: makeReverseCurve(from: curve))
+   }
+}
+
 /// Extension for quick look in playgrounds.
 extension Sketch: CustomPlaygroundQuickLookable {
    public func quickView() -> SketchView {
