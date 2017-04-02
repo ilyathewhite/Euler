@@ -9,24 +9,14 @@
 import Cocoa
 import EulerSketchOSX
 
-class ViewController: NSViewController {
-   let sketch = Sketch()
-
+class ViewController: SketchViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
-      sketchView.sketch = sketch
       
       try! ninePointCircle(sketch)
       // try! radicalAxis(sketch)
    }
    
-   override func viewDidAppear() {
-      super.viewDidAppear()
-      runNinePointCircleAnimation()
-   }
-   
-   var sketchView: SketchView { return view as! SketchView }
-
    func ninePointCircle(_ s: Sketch) throws {
       s.addPoint("A", hint: (150, 150))
       s.addPoint("B", hint: (550, 150))
@@ -63,14 +53,14 @@ class ViewController: NSViewController {
       s.point("A1", setNameLocation: .topLeft)
       s.point("Bh", setNameLocation: .topLeft)
       s.point("Bm", setNameLocation: .topLeft)
-   }
-   
-   func runNinePointCircleAnimation() {
+      
+      // animation
+
       let p1 = try! sketch.getPoint("C")
       let p2 = p1.translate(by: (0.0, -150.0))
       let segmentCurve = Sketch.makeSegmentParametricCurve(from: p1, to: p2)!
       let loopSegmentCurve = Sketch.makeLoopCurve(from: segmentCurve)
-      sketchView.dragPoint("C", along: loopSegmentCurve, duration: 10.0)
+      setAnimation(point: "C", along: loopSegmentCurve, duration: 10.0)
    }
    
    func circlePointProjections(_ s: Sketch) throws {
