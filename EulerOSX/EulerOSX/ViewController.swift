@@ -13,8 +13,10 @@ class ViewController: SketchViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       
-      try! ninePointCircle(sketch)
+      // try! ninePointCircle(sketch)
       // try! radicalAxis(sketch)
+      
+      try! circlePointProjections(sketch)
    }
    
    func ninePointCircle(_ s: Sketch) throws {
@@ -64,13 +66,14 @@ class ViewController: SketchViewController {
    }
    
    func circlePointProjections(_ s: Sketch) throws {
-      s.addPoint("A", hint: (190, 105))
-      s.addPoint("B", hint: (440, 105))
-      s.addPoint("C", hint: (350, 215))
+      s.addPoint("A", hint: (182.0,185.0))
+      s.addPoint("B", hint: (495.0,185.0))
+      s.addPoint("C", hint: (441.0,406.0))
       
       s.addTriangle("ABC")
       s.addCircle("ABC", throughPoints: "A", "B", "C")
-      s.addPoint("P", onCircle: "ABC", hint: (350, 35))
+      s.addCircumcenter("O", ofTriangle: "ABC")
+      s.addPoint("P", onCircle: "ABC", hint: (396.0,107.0))
       
       s.addPerpendicular("PA1", toSegment: "BC")
       s.addPerpendicular("PB1", toSegment: "AC")
@@ -84,8 +87,17 @@ class ViewController: SketchViewController {
       s.point("A1", setNameLocation: .bottomRight)
       s.point("P", setNameLocation: .bottomRight)
       s.point("B1", setNameLocation: .topLeft)
+      s.hide(figureNamed: "point_O")
       
-      view.needsDisplay = true
+      // animation
+
+      let O = try! s.getPoint("O")
+      let A = try! s.getPoint("A")
+      let P = try! s.getPoint("P")
+      let radius = O.distanceToPoint(A)
+      let startAngle = toDegrees(HSSegment(vertex1: O, vertex2: P)!.ray.angle)
+      let arcCurve = Sketch.makeArcParametricCurve(center: O, radius: radius, fromAngle: startAngle, toAngle: startAngle + 360.0)
+      setAnimation(point: "P", along: arcCurve, duration: 25.0)
    }
    
    func radicalAxis(_ s: Sketch) throws {

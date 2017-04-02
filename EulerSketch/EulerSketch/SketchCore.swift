@@ -572,6 +572,18 @@ public extension Sketch {
       return { param in ray.pointAtDistance(param * length) }
    }
 
+   /// Returns a parametric curve that moves a point through the arc specified by the circle with a given center and radius,
+   /// and the start and end angle (in degrees).
+   static func makeArcParametricCurve(center: Point, radius: Double, fromAngle degAngle1: Double, toAngle degAngle2: Double) -> ParametricCurve {
+      let angle1 = toRadians(degAngle1)
+      let angle2 = toRadians(degAngle2)
+      return { param in
+         let angle = angle1 + (angle2 - angle1) * param
+         let ray = HSRay(vertex: center, angle: angle)
+         return ray.pointAtDistance(radius)
+      }
+   }
+
    /// Returns a parametric curve that moves a point through the curve path in the reverse direction of the input curve.
    static func makeReverseCurve(from curve: @escaping ParametricCurve) -> ParametricCurve {
       return { param in curve(max(0.0, 1.0 - param)) }
