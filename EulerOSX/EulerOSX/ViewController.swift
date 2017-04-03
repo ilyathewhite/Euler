@@ -62,18 +62,18 @@ class ViewController: SketchViewController {
       let p2 = p1.translate(by: (0.0, -150.0))
       let segmentCurve = Sketch.makeSegmentParametricCurve(from: p1, to: p2)!
       let loopSegmentCurve = Sketch.makeLoopCurve(from: segmentCurve)
-      setAnimation(point: "C", along: loopSegmentCurve, duration: 10.0)
+      sketchAnimator = SketchAnimator(controller: self, point: "C", along: loopSegmentCurve, duration: 10.0)
    }
    
    func circlePointProjections(_ s: Sketch) throws {
-      s.addPoint("A", hint: (182.0,185.0))
-      s.addPoint("B", hint: (495.0,185.0))
-      s.addPoint("C", hint: (441.0,406.0))
+      s.addPoint("A", hint: (52.0,145.0))
+      s.addPoint("B", hint: (365.0,145.0))
+      s.addPoint("C", hint: (311.0,366.0))
       
       s.addTriangle("ABC")
       s.addCircle("ABC", throughPoints: "A", "B", "C")
       s.addCircumcenter("O", ofTriangle: "ABC")
-      s.addPoint("P", onCircle: "ABC", hint: (396.0,107.0))
+      s.addPoint("P", onCircle: "ABC", hint: (266.0,67.0))
       
       s.addPerpendicular("PA1", toSegment: "BC")
       s.addPerpendicular("PB1", toSegment: "AC")
@@ -96,8 +96,12 @@ class ViewController: SketchViewController {
       let P = try! s.getPoint("P")
       let radius = O.distanceToPoint(A)
       let startAngle = toDegrees(HSSegment(vertex1: O, vertex2: P)!.ray.angle)
-      let arcCurve = Sketch.makeArcParametricCurve(center: O, radius: radius, fromAngle: startAngle, toAngle: startAngle + 360.0)
-      setAnimation(point: "P", along: arcCurve, duration: 25.0)
+      let arcHalfCurve = Sketch.makeArcParametricCurve(center: O, radius: radius, fromAngle: startAngle, toAngle: startAngle - 30.0)
+      let arcCurve = Sketch.makeLoopCurve(from: arcHalfCurve)
+   
+      let animator = SketchAnimator(controller: self, point: "P", along: arcCurve, duration: 10.0)
+      animator.animatedGifFilePath = "\(NSHomeDirectory())/animated.gif"
+      sketchAnimator = animator
    }
    
    func radicalAxis(_ s: Sketch) throws {

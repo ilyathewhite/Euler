@@ -680,6 +680,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="668" height="508"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
+                    <connections>
+                        <outlet property="sketchView" destination="m2S-Jp-Qdl" id="jf0-FJ-bp0"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
