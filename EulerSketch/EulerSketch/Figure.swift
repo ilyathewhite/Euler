@@ -183,7 +183,7 @@ struct FigureSet {
    
    /// Removes `figure` from the set.
    mutating func remove(_ figure: FigureType) {
-      guard let index = figures.index(where: { $0 === figure }) else { return }
+      guard let index = figures.firstIndex(where: { $0 === figure }) else { return }
       figures.remove(at: index)
    }
 

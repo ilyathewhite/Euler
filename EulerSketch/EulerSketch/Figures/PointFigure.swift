@@ -78,7 +78,7 @@ class PointFigure: Figure<HSPoint>, Point {
    
    var shouldDrawName: Bool {
       let prefixes: [FigureNamePrefix] = [.Handle, .Part]
-      return prefixes.index { name.hasPrefix($0.rawValue) } == nil
+      return prefixes.firstIndex { name.hasPrefix($0.rawValue) } == nil
    }
    
    override func draw(_ renderer: Renderer) {

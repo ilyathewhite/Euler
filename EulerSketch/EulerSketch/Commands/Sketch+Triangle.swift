@@ -163,7 +163,7 @@ extension Sketch {
    @discardableResult public func addExcenter(_ excenterName: String, ofTriangle triangleName: String, opposite vertexName: String, style: DrawingStyle? = nil) -> FigureResult {
       do {
          let (vertices, _) = try getTriangleInfo(triangleName)
-         guard let vertexIndex = vertices.index(where: { $0.name == vertexName }) else {
+         guard let vertexIndex = vertices.firstIndex(where: { $0.name == vertexName }) else {
             return .failure(SketchError.invalidValue(argName: vertexName))
          }
          
@@ -207,7 +207,7 @@ extension Sketch {
    @discardableResult public func addExcircle(_ excircleName: String, ofTriangle triangleName: String, opposite vertexName: String, style: DrawingStyle? = nil) -> FigureResult {
       do {
          let (vertices, _) = try getTriangleInfo(triangleName)
-         guard let vertexIndex = vertices.index(where: { $0.name == vertexName }) else {
+         guard let vertexIndex = vertices.firstIndex(where: { $0.name == vertexName }) else {
             return .failure(SketchError.invalidValue(argName: vertexName))
          }
          
