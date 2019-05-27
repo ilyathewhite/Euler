@@ -86,13 +86,13 @@ public extension Circle {
       if x1 > 0 {
          let centersSegment = HSSegment(vertex1: circle1.center, vertex2: circle2.center)!
          let point = centersSegment.ray.pointAtDistance(x1)
-         let angle = centersSegment.angleFromXAxis() + M_PI_2
+         let angle = centersSegment.angleFromXAxis() + .pi / 2
          return (point, angle)
       }
       else {
          let centersSegment = HSSegment(vertex1: circle2.center, vertex2: circle1.center)!
          let point = centersSegment.ray.pointAtDistance(d - x1)
-         let angle = centersSegment.angleFromXAxis() + M_PI_2
+         let angle = centersSegment.angleFromXAxis() + .pi / 2
          return (point, angle)
       }
    }
@@ -117,7 +117,7 @@ public extension Circle {
       
       let cosVal = (square(r1) + square(d) - square(r2)) / (2 * d * r1)
       let x = abs(r1 * cosVal)
-      let P = (cosVal >= 0) ?  O1O2.ray.pointAtDistance(x) : HSRay(vertex: O1, angle: O1O2.ray.angle + M_PI).pointAtDistance(x)
+      let P = (cosVal >= 0) ?  O1O2.ray.pointAtDistance(x) : HSRay(vertex: O1, angle: O1O2.ray.angle + .pi).pointAtDistance(x)
       return O1O2.line.perpendicularLineFromPoint(P).intersect(self)
    }
    

@@ -48,7 +48,7 @@ class PointFigure: Figure<HSPoint>, Point {
       
       func draw(renderer: Renderer) {
          for idx in 0..<markCount {
-            let angle = ray2.angle > ray1.angle ? ray2.angle - ray1.angle : M_PI * 2 - (ray1.angle - ray2.angle)
+            let angle = ray2.angle > ray1.angle ? ray2.angle - ray1.angle : .pi * 2 - (ray1.angle - ray2.angle)
             renderer.drawArc(
                center: ray1.value.vertex,
                startPoint: ray1.pointAtDistance(distanceToFirstMark + distanceBetweenMarks * Double(idx)),
@@ -88,12 +88,12 @@ class PointFigure: Figure<HSPoint>, Point {
       
       if shouldDrawName {
          let str = NSMutableAttributedString(string: name)
-         str.addAttribute(kCTFontAttributeName as String, value: style.font, range:NSRange(location: 0, length: name.characters.count))
+         str.addAttribute(.font, value: style.font, range:NSRange(location: 0, length: name.count))
          
-         if name.characters.count > 1 {
-            let subscriptRange = NSRange(location: 1, length: name.characters.count - 1)
-            str.addAttribute(NSAttributedString.subscriptAttributeName, value: -2.0, range: subscriptRange)
-            str.addAttribute(kCTFontAttributeName as String, value: style.subscriptFont, range: subscriptRange)
+         if name.count > 1 {
+            let subscriptRange = NSRange(location: 1, length: name.count - 1)
+            str.addAttribute(.baselineOffset, value: -2.0, range: subscriptRange)
+            str.addAttribute(.font, value: style.subscriptFont, range: subscriptRange)
          }
          
          let strSize = (labelLocation == .topRight) ? CGSize() : str.size()
@@ -145,14 +145,14 @@ class PointFigure: Figure<HSPoint>, Point {
       switch kind {
       case let .perpendicularLineFoot(point, line):
          let p1 = perpendicularMarkPoint1(point, line)
-         let markAngle = M_PI_2
+         let markAngle: Double = .pi / 2
          let p2 = p1.rotateAroundPoint(self, angle: markAngle)
          
          drawPependicularMark(markPoint1: p1, markPoint2: p2)
          
       case let .perpendicularSegmentFoot(point, segment):
          let p1 = perpendicularMarkPoint1(point, segment.line)
-         let points = [ p1.rotateAroundPoint(self, angle: M_PI_2), p1.rotateAroundPoint(self, angle: -M_PI_2) ]
+         let points = [ p1.rotateAroundPoint(self, angle:.pi / 2), p1.rotateAroundPoint(self, angle: -(.pi / 2)) ]
          
          if let seg = HSSegment(vertex1: self, vertex2: segment.vertex2) , seg.containsLinePoint(segment.vertex1) {
             renderer.setStyle(.extra)

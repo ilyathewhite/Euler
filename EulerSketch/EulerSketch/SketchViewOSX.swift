@@ -37,7 +37,7 @@
       override open func draw(_ dirtyRect: NSRect) {
          guard let sketch = sketch else { return }
          
-         let context = NSGraphicsContext.current()!.cgContext
+         let context = NSGraphicsContext.current!.cgContext
          
          NSColor.white.setFill()
          context.fill(bounds)

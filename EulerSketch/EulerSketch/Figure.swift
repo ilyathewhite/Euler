@@ -49,8 +49,8 @@ public enum FigureNamePrefix: String {
    
    var nameWithoutLastChar: String {
       let str = rawValue
-      let lastIdx = str.characters.index(str.endIndex, offsetBy: -1)
-      return str.substring(to: lastIdx)
+      let lastIdx = str.index(str.endIndex, offsetBy: -1)
+      return String(str[..<lastIdx])
    }
 }
 
@@ -140,9 +140,9 @@ protocol Evaluable: class {
 /// The protocol that describes a figure. A figure must be a class because
 /// figures form a dependency graph, and many figures may need to reference
 /// the same figure and react to changes in that figure. 
-protocol FigureType: class, Shape, Drawable, Draggable, Evaluable {
+protocol FigureType: Shape, Drawable, Draggable, Evaluable {
    /// The sketch that owns the figure.
-   weak var sketch: Sketch? { get set }
+   var sketch: Sketch? { get set }
 
    /// Adds `figure` as a dependent figure. This means that any changes in
    /// this figure trigger reevaluation of `figure`.

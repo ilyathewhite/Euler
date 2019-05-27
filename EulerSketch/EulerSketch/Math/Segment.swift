@@ -71,7 +71,7 @@ public extension Segment {
          return acos(dx / dist)
       }
       else {
-         return M_PI * 2 - acos(dx / dist)
+         return .pi * 2 - acos(dx / dist)
       }
    }
    
@@ -113,7 +113,7 @@ public extension Segment {
    ///  The counterclockwise angle (in radians) from the vector from this segment to the vector from `segment`. Can be greater than PI.
    func counterclockwiseAngleToSegment(_ segment: Segment) -> Double {
       let angle = angleToSegment(segment)
-      return angle > 0 ? angle : 2 * M_PI - angle
+      return angle > 0 ? angle : 2 * .pi - angle
    }
    
    // Shape

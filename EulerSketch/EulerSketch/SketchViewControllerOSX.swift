@@ -10,7 +10,7 @@
    import AppKit
    
    // The basic sketch controller
-   open class SketchViewController: NSViewController {
+   open class SketchViewController: NSViewController, NSMenuItemValidation {
       public let sketch = Sketch()
       
       override open func viewDidLoad() {
@@ -28,9 +28,9 @@
       
       // MARK: - Action validation
       
-      override open func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+      public func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
          guard menuItem.action == #selector(SketchViewController.startAnimation(_:)) else {
-            return super.validateMenuItem(menuItem)
+            return true
          }
          return sketchAnimator != nil
       }
@@ -140,8 +140,6 @@
    
    /// Animation for parametric curve.
    private class ParametricCurveAnimation: NSAnimation {
-      typealias Curve = Sketch.ParametricCurve
-      
       /// the curve
       private let curve: (Double) -> HSPoint
       
@@ -149,13 +147,13 @@
       private let progressAction: (HSPoint) -> ()
       
       /// Constructs the animation with a specific curve, animated point location callback, and duration.
-      init(curve: @escaping Curve, progressAction: @escaping (HSPoint) -> (), duration: TimeInterval) {
+      init(curve: @escaping Sketch.ParametricCurve, progressAction: @escaping (HSPoint) -> (), duration: TimeInterval) {
          self.curve = curve
          self.progressAction = progressAction
          super.init(duration: duration, animationCurve: .linear)
       }
       
-      override var currentProgress: NSAnimationProgress {
+      override var currentProgress: NSAnimation.Progress {
          didSet {
             progressAction(curve(Double(currentProgress)))
          }

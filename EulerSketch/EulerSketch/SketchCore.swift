@@ -434,7 +434,7 @@ open class Sketch {
    // MARK: Top Level Helper Functions
    
    /// The content for `FigureResult`. Useful for displaying the result and quick look in playgrounds.
-   public struct FigureSummary: CustomStringConvertible, CustomPlaygroundQuickLookable {
+    public struct FigureSummary: CustomStringConvertible, CustomPlaygroundDisplayConvertible {
       /// The figure string summary.
       let string: String
       
@@ -447,10 +447,10 @@ open class Sketch {
          return string
       }
       
-      // CustomPlaygroundQuickLookable
-      
-      public var customPlaygroundQuickLook: PlaygroundQuickLook {
-         return sketch.customPlaygroundQuickLook
+      // CustomPlaygroundDisplayConvertible
+
+      public var playgroundDescription: Any {
+        return sketch.playgroundDescription
       }
    }
    
@@ -482,7 +482,7 @@ open class Sketch {
          idx = string.index(after: idx)
       }
       
-      let prefix = (idx == string.endIndex) ? "" : string.substring(to: idx)
+      let prefix = (idx == string.endIndex) ? "" : String(string[..<idx])
       guard let prefixVal = FigureNamePrefix(rawValue: prefix) , (prefixVal == .None) || (prefixVal == expected) else {
          throw SketchError.invalidFigureNamePrefix(prefix: prefix)
       }
@@ -500,13 +500,13 @@ open class Sketch {
       idx = string.index(after: nameStartIdx)
       while idx != string.endIndex {
          if isUppercaseChar(idx) {
-            names.append(string.substring(with: nameStartIdx..<idx))
+            names.append(String(string[nameStartIdx..<idx]))
             nameStartIdx = idx
          }
          idx = string.index(after: idx)
       }
       if (nameStartIdx != string.endIndex) && isUppercaseChar(nameStartIdx) {
-         names.append(string.substring(from: nameStartIdx))
+         names.append(String(string[nameStartIdx...]))
       }
       
       return names
@@ -604,15 +604,15 @@ public extension Sketch {
 }
 
 /// Extension for quick look in playgrounds.
-extension Sketch: CustomPlaygroundQuickLookable {
-   public func quickView() -> SketchView {
-      let view = SketchView(frame: CGRect(origin: .zero, size: CGSize(width: 600, height: 600)))
-      view.sketch = self
-      return view
-   }
-   
-   public var customPlaygroundQuickLook: PlaygroundQuickLook {
-      return PlaygroundQuickLook(reflecting: quickView())
+extension Sketch: CustomPlaygroundDisplayConvertible {
+    public func quickView() -> SketchView {
+        let view = SketchView(frame: CGRect(origin: .zero, size: CGSize(width: 600, height: 600)))
+        view.sketch = self
+        return view
+    }
+
+   public var playgroundDescription: Any {
+        return quickView()
    }
 }
 

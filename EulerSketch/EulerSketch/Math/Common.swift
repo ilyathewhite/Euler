@@ -32,12 +32,12 @@ public func isZero(_ value: Double) -> Bool {
 
 /// Converts degrees to radians.
 public func toRadians(_ degrees: Double) -> Double {
-   return M_PI / 180.0 * degrees
+   return .pi / 180.0 * degrees
 }
 
 /// Converts radians to degrees.
 public func toDegrees(_ radians: Double) -> Double {
-   return radians / M_PI * 180.0
+   return radians / .pi * 180.0
 }
 
 /// Squares the argument.

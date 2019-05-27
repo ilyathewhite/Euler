@@ -12,11 +12,6 @@ import UIKit
 import AppKit
 #endif
 
-extension NSAttributedString {
-   // This excludes the dependency of Point name description from UIKit / AppKit.
-   static var subscriptAttributeName: String { return NSBaselineOffsetAttributeName }
-}
-
 #if os(iOS)
 extension CGColorRef {
    static func clearColor() -> CGColorRef { return UIColor.clearColor().CGColor }
@@ -63,22 +58,22 @@ open class DrawingStyle {
    var subscriptFont = Font.defaultFontOfSize(10)
    
    /// The default style for all figures.
-   open static let regular = DrawingStyle()
+   public static let regular = DrawingStyle()
 
    /// The default style for points. It's different from `defaultStyle` because
    /// otherwise points on figures would not be visible. A typical rendering of
    /// a geometric point is a tiny circle.
-   open static let pointRegular = DrawingStyle.makePointStyle()
+   public static let pointRegular = DrawingStyle.makePointStyle()
    
    /// The emphasized style. Used to draw attention to a partciular part of the sketch.
    /// The most common represention is thick black paths.
-   open static let emphasized = DrawingStyle.makeEmphasizedStyle()
+   public static let emphasized = DrawingStyle.makeEmphasizedStyle()
    
    /// The extra style. Used to show additional constructions that are necessary to
    /// prove or illustrate the main result. The parts of the sketch that use this style
    /// are typically not necessary to describe the problem being solved. The most common
    /// represention is dashed gray paths.
-   open static let extra = DrawingStyle.makeExtraStyle()
+   public static let extra = DrawingStyle.makeExtraStyle()
    
    fileprivate static func makePointStyle() -> DrawingStyle  {
       let res = DrawingStyle()
@@ -111,8 +106,7 @@ extension Point {
 
 public extension CGPoint {
    internal init(_ point: Point) {
-      x = CGFloat(point.x)
-      y = CGFloat(point.y)
+      self.init(x: point.x, y: point.y)
    }
    
    var X: Double { return Double(x) }
@@ -158,7 +152,7 @@ protocol Renderer {
 extension Renderer {
    /// Draws the circle using the arc API.
    func drawCircle(center: Point, radius: Double) {
-      drawArc(center: center, startPoint: HSPoint(center.x + radius, center.y), angle: M_PI * 2)
+      drawArc(center: center, startPoint: HSPoint(center.x + radius, center.y), angle: .pi * 2)
    }
 
    /// Draws the segment using the segment path API.
@@ -177,7 +171,7 @@ struct CGRenderer: Renderer {
       #if os(iOS)
       nativeScale = Double(UIScreen.mainScreen().nativeScale)
       #else
-      nativeScale = Double(NSScreen.main()!.backingScaleFactor)
+      nativeScale = Double(NSScreen.main!.backingScaleFactor)
       #endif
    }
 
@@ -214,7 +208,7 @@ struct CGRenderer: Renderer {
    }
    
    func drawText(_ str: NSAttributedString, atPoint pnt: Point) {
-      let font = str.attribute(kCTFontAttributeName as String, at: 0, effectiveRange: nil) as! Font
+      let font = str.attribute(.font, at: 0, effectiveRange: nil) as! Font
       context.saveGState()
 #if os(iOS)
       CGContextTranslateCTM(context, pnt.x_CG, pnt.y_CG + font.lineHeight)
@@ -232,14 +226,14 @@ struct CGRenderer: Renderer {
       let dx = startPoint.x - center.x
       let dy = startPoint.y - center.y
       let radius = sqrt(dx * dx + dy * dy)
-      let startAngle = (dy >= 0.0) ? acos(dx / radius) : 2 * M_PI - acos(dx / radius)
+      let startAngle = (dy >= 0.0) ? acos(dx / radius) : 2 * .pi - acos(dx / radius)
       context.addArc(center: CGPoint(center), radius: CGFloat(radius), startAngle: CGFloat(startAngle), endAngle: CGFloat(startAngle + angle), clockwise: false)
       context.strokePath()
    }
    
    func fillCircle(center: Point, radius: Double) {
       context.move(to: CGPoint(x: CGFloat(center.x + radius), y: CGFloat(center.y)))
-      context.addArc(center: CGPoint(center), radius: CGFloat(radius), startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: false)
+      context.addArc(center: CGPoint(center), radius: CGFloat(radius), startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: false)
       context.fillPath()
    }
 }

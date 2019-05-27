@@ -140,7 +140,7 @@ class CompoundLineFigure: LineFigure {
       
       ray1 = try! RayFigure(name: rayNamePrefix + "_1", vertex: vertex, hintAngle: angle)
       ray1.dragUpdateFunc = nil
-      ray2 = try! RayFigure(name: rayNamePrefix + "_2", vertex: vertex, hintAngle: angle + M_PI)
+      ray2 = try! RayFigure(name: rayNamePrefix + "_2", vertex: vertex, hintAngle: angle + .pi)
       ray2.dragUpdateFunc = nil
    }
    
@@ -159,15 +159,15 @@ class CompoundLineFigure: LineFigure {
 
       ray2 = try RayFigure(name: rayNamePrefix + "_2" , usedFigures: usedFigures) {
          guard let angle = angleFunc() else { return nil }
-         return HSRay(vertex: vertex, angle: angle + M_PI)
+         return HSRay(vertex: vertex, angle: angle + .pi)
       }
    }
    
    /// Updates the line with a given vertex and angle.
    func update(_ vertex: Point, angle: Double) {
       ray1.update(vertex, angle: angle)
-      let angle2 = angle + M_PI
-      ray2.update(vertex, angle: angle2 < 2 * M_PI ? angle2 : angle2 - 2 * M_PI)
+      let angle2 = angle + .pi
+      ray2.update(vertex, angle: angle2 < 2 * .pi ? angle2 : angle2 - 2 * .pi)
       notifyFigureDidChange()
    }
 }

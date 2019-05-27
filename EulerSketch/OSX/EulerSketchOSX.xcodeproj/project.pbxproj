@@ -43,8 +43,8 @@
 
 /* Begin PBXFileReference section */
 		090050651DFDDD5D00CC2A83 /* Sketh+Dilation.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Sketh+Dilation.playground"; path = "../EulerSketch/Commands/Transformations/Sketh+Dilation.playground"; sourceTree = SOURCE_ROOT; };
-		09012B511D73DC200045944E /* Sketch+Ray.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Sketch+Ray.playground"; path = "../EulerSketch/Commands/Sketch+Ray.playground"; sourceTree = SOURCE_ROOT; };
-		090C834C1D73D88400809966 /* Sketch+Line.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Sketch+Line.playground"; path = "../EulerSketch/Commands/Sketch+Line.playground"; sourceTree = SOURCE_ROOT; };
+		09012B511D73DC200045944E /* Sketch+Ray.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Sketch+Ray.playground"; path = "../EulerSketch/Commands/Sketch+Ray.playground"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		090C834C1D73D88400809966 /* Sketch+Line.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Sketch+Line.playground"; path = "../EulerSketch/Commands/Sketch+Line.playground"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		090D41201D461D3D000316ED /* SketchCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SketchCore.swift; path = ../EulerSketch/SketchCore.swift; sourceTree = SOURCE_ROOT; };
 		0934E3C41DFDFFE6007246DD /* Sketch+LineReflection.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Sketch+LineReflection.playground"; path = "../EulerSketch/Commands/Transformations/Sketch+LineReflection.playground"; sourceTree = SOURCE_ROOT; };
 		093AECEA1E161BFE00CFB0C0 /* Sketch+Combined.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Sketch+Combined.playground"; path = "../EulerSketch/Commands/Sketch+Combined.playground"; sourceTree = SOURCE_ROOT; };
@@ -242,12 +242,12 @@
 		09BA69561D276F5500ECE505 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Ilya Belenkiy";
 				TargetAttributes = {
 					09BA695E1D276F5500ECE505 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -330,14 +330,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -380,14 +388,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -431,7 +447,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -451,7 +468,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = HS.EulerSketchOSX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

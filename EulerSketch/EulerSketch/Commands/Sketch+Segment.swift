@@ -86,7 +86,7 @@ extension Sketch {
          try addExtraFigure(midPointFigure)
          
          let figure = try CompoundLineFigure(name: bisectorName, vertex: midPointFigure, usedFigures: FigureSet(vertices)) {
-            return HSSegment(vertex1: vertices[0], vertex2: vertices[1])!.angleFromXAxis() + M_PI_2
+            return HSSegment(vertex1: vertices[0], vertex2: vertices[1])!.angleFromXAxis() + .pi / 2
          }
          
          return .success(try addFigure(figure, style: style))
